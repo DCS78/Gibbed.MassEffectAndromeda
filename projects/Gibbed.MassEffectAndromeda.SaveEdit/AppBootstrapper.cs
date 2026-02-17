@@ -20,6 +20,7 @@
  *    distribution.
  */
 
+using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -27,7 +28,6 @@ using System.ComponentModel.Composition.Hosting;
 using System.Linq;
 using System.Reflection;
 using System.Windows;
-using Caliburn.Micro;
 
 namespace Gibbed.MassEffectAndromeda.SaveEdit
 {
@@ -99,7 +99,7 @@ namespace Gibbed.MassEffectAndromeda.SaveEdit
             {
                 base.OnStartup(sender, e);
                 //GameInfo.InfoManager.Touch();
-                this.DisplayRootViewFor<ShellViewModel>();
+                this.DisplayRootViewForAsync<ShellViewModel>();
             }
             catch (Exception ex)
             {

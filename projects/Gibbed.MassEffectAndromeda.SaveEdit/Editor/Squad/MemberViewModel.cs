@@ -20,12 +20,12 @@
  *    distribution.
  */
 
-using System;
 using Caliburn.Micro;
 using Gibbed.MassEffectAndromeda.FileFormats;
 using Gibbed.MassEffectAndromeda.SaveFormats.Components;
 using Gibbed.MassEffectAndromeda.SaveFormats.Data;
 using Gibbed.MassEffectAndromeda.SaveFormats.Items;
+using System;
 
 namespace Gibbed.MassEffectAndromeda.SaveEdit.Squad
 {
@@ -41,9 +41,9 @@ namespace Gibbed.MassEffectAndromeda.SaveEdit.Squad
 
         public MemberViewModel(Core.InventoryViewModel inventory, int index, GameInfo.PartyMemberDefinition definition)
         {
-            this._Inventory = inventory;
-            this._Index = index;
-            this._Definition = definition;
+            _Inventory = inventory;
+            _Index = index;
+            _Definition = definition;
         }
 
         #region Properties
@@ -80,10 +80,10 @@ namespace Gibbed.MassEffectAndromeda.SaveEdit.Squad
 
         public void ImportData(PartyMemberSnapshot snapshot, PartyMember data)
         {
-            this._Snapshot = snapshot;
-            this._Data = data;
+            _Snapshot = snapshot;
+            _Data = data;
 
-            if (this._Inventory != null)
+            if (_Inventory != null)
             {
                 if (data.Inventory != null)
                 {
@@ -91,7 +91,7 @@ namespace Gibbed.MassEffectAndromeda.SaveEdit.Squad
                     {
                         if (rawItem.DataBytes == null || rawItem.DataLength == 0)
                         {
-                            this._Inventory.RawItems.Add(rawItem);
+                            _Inventory.RawItems.Add(rawItem);
                             continue;
                         }
 
@@ -101,9 +101,9 @@ namespace Gibbed.MassEffectAndromeda.SaveEdit.Squad
                         {
                             item = InventoryComponent.ReadItemData(bitReader, data.Inventory.ReadVersion);
                         }
-                        catch (Exception e)
+                        catch (Exception)
                         {
-                            this._Inventory.RawItems.Add(rawItem);
+                            _Inventory.RawItems.Add(rawItem);
                             continue;
                         }
 
@@ -126,10 +126,10 @@ namespace Gibbed.MassEffectAndromeda.SaveEdit.Squad
                         }
                         else
                         {
-                            this._Inventory.RawItems.Add(rawItem);
+                            _Inventory.RawItems.Add(rawItem);
                             continue;
                         }
-                        this._Inventory.Items.Add(viewModel);
+                        _Inventory.Items.Add(viewModel);
                     }
                 }
             }
@@ -137,10 +137,10 @@ namespace Gibbed.MassEffectAndromeda.SaveEdit.Squad
 
         public void ExportData(out PartyMemberSnapshot snapshot, out PartyMember data)
         {
-            snapshot = this._Snapshot;
-            data = this._Data;
+            snapshot = _Snapshot;
+            data = _Data;
 
-            if (this._Inventory != null)
+            if (_Inventory != null)
             {
                 if (data.Inventory == null)
                 {
@@ -151,16 +151,18 @@ namespace Gibbed.MassEffectAndromeda.SaveEdit.Squad
                     data.Inventory.Items.Clear();
                 }
 
-                data.Inventory.Items.AddRange(this._Inventory.RawItems);
+                data.Inventory.Items.AddRange(_Inventory.RawItems);
 
-                foreach (var viewModel in this._Inventory.Items)
+                foreach (var viewModel in _Inventory.Items)
                 {
                     var bitWriter = new BitWriter(0x1000);
                     InventoryComponent.WriteItemData(bitWriter, viewModel.Data);
-                    var rawItem = new InventoryComponent.RawItemData();
-                    rawItem.Id = viewModel.Id;
-                    rawItem.DataBytes = bitWriter.GetBytes();
-                    rawItem.DataLength = bitWriter.Position;
+                    var rawItem = new InventoryComponent.RawItemData
+                    {
+                        Id = viewModel.Id,
+                        DataBytes = bitWriter.GetBytes(),
+                        DataLength = bitWriter.Position
+                    };
                     data.Inventory.Items.Add(rawItem);
                 }
             }

@@ -88,8 +88,7 @@ namespace Gibbed.MassEffectAndromeda.SaveEdit.Core
                 yield break;
             }
 
-            CustomizationAgent.ComponentContainer container;
-            if (agent.ComponentContainers.TryGetValue(1, out container) == false)
+            if (agent.ComponentContainers.TryGetValue(1, out SaveFormats.ComponentContainerAgent<SaveFormats.CustomizedParameters.ICustomizedParameter, SaveFormats.CustomizedParameters.CustomizedParameterAttribute>.ComponentContainer container) == false)
             {
                 yield return new MyMessageBox("Slot #1 customization data appears to be missing.", "Error")
                     .WithIcon(MessageBoxImage.Error);

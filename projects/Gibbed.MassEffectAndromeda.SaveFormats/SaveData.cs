@@ -20,12 +20,12 @@
  *    distribution.
  */
 
+using Gibbed.MassEffectAndromeda.FileFormats;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using Gibbed.MassEffectAndromeda.FileFormats;
-using Newtonsoft.Json;
 
 namespace Gibbed.MassEffectAndromeda.SaveFormats
 {
@@ -364,16 +364,18 @@ namespace Gibbed.MassEffectAndromeda.SaveFormats
             for (int i = 0; i < bundleHeapCount; i++)
             {
                 reader.PushFrameLength(24);
-                var bundleHeap = new Data.BundleHeapInfo();
-                bundleHeap.Unknown1 = reader.ReadString();
-                bundleHeap.Unknown2 = reader.ReadUInt32();
-                bundleHeap.Unknown3 = reader.ReadUInt32();
-                bundleHeap.Type = (Data.BundleHeapType)reader.ReadUInt8();
-                bundleHeap.Unknown4 = reader.ReadUInt32();
-                bundleHeap.Unknown5 = reader.ReadBoolean();
-                bundleHeap.Unknown6 = reader.ReadUInt8();
-                bundleHeap.Unknown7 = reader.ReadUInt8();
-                bundleHeap.Unknown8 = reader.ReadUInt32();
+                var bundleHeap = new Data.BundleHeapInfo
+                {
+                    Unknown1 = reader.ReadString(),
+                    Unknown2 = reader.ReadUInt32(),
+                    Unknown3 = reader.ReadUInt32(),
+                    Type = (Data.BundleHeapType)reader.ReadUInt8(),
+                    Unknown4 = reader.ReadUInt32(),
+                    Unknown5 = reader.ReadBoolean(),
+                    Unknown6 = reader.ReadUInt8(),
+                    Unknown7 = reader.ReadUInt8(),
+                    Unknown8 = reader.ReadUInt32()
+                };
                 if (saveVersion < 17)
                 {
                     reader.SkipBoolean();
@@ -387,10 +389,12 @@ namespace Gibbed.MassEffectAndromeda.SaveFormats
             for (int i = 0; i < unknown3Count; i++)
             {
                 reader.PushFrameLength(24);
-                var instance = new Data.SaveDataUnknown0();
-                instance.Unknown1 = reader.ReadUInt16();
-                instance.Unknown2 = reader.ReadUInt16();
-                instance.Unknown3 = reader.ReadUInt8();
+                var instance = new Data.SaveDataUnknown0
+                {
+                    Unknown1 = reader.ReadUInt16(),
+                    Unknown2 = reader.ReadUInt16(),
+                    Unknown3 = reader.ReadUInt8()
+                };
                 this._Unknown2.Add(instance);
                 reader.PopFrameLength();
             }
@@ -507,17 +511,8 @@ namespace Gibbed.MassEffectAndromeda.SaveFormats
             }
 
             var unknown18Count = reader.ReadUInt16();
-            for (int i = 0; i < unknown18Count; i++)
+            if (unknown18Count > 0)
             {
-                reader.PushFrameLength(24);
-                var unknown19 = reader.ReadUInt32();
-                var unknown20Count = reader.ReadUInt16();
-                var unknown20 = new uint[unknown20Count];
-                for (int j = 0; j < unknown20Count; j++)
-                {
-                    unknown20[j] = reader.ReadUInt32();
-                }
-                reader.PopFrameLength();
                 throw new NotImplementedException();
             }
 
@@ -580,42 +575,15 @@ namespace Gibbed.MassEffectAndromeda.SaveFormats
             ReadAgentData(reader, this._Agents, agentDataOffsetLookup, 3, (r, t) => t.Read4(r));
             ReadAgentData(reader, this._Agents, agentDataOffsetLookup, 4, (r, t) => t.Read5(r));
 
-            /*
-            var entities = new List<Entities.Entity>();
-            foreach (var kv in entityDataOffsets)
-            {
-                var entityDataFirstOffset = kv.Value.Item1;
-                var entityDataSecondOffset = kv.Value.Item2;
-
-                var entity = Entities.EntityFactory.Create(kv.Key);
-
-                if (entityDataFirstOffset.HasValue == true)
-                {
-                    reader.Position = (int)entityDataFirstOffset.Value;
-                    reader.PushFrameLength(24);
-                    entity.Read0(reader);
-                    reader.PopFrameLength();
-                }
-
-                if (entityDataSecondOffset.HasValue == true)
-                {
-                    reader.Position = (int)entityDataSecondOffset.Value;
-                    reader.PushFrameLength(24);
-                    entity.Read1(reader);
-                    reader.PopFrameLength();
-                }
-
-                entities.Add(entity);
-            }
-            */
-
             this._Entities.Clear();
             foreach (var kv in entityDataOffsets)
             {
                 var entityData0Offset = kv.Value.Item1;
                 var entityData1Offset = kv.Value.Item2;
-                var rawEntity = new Entities.RawEntity();
-                rawEntity.Id = kv.Key;
+                var rawEntity = new Entities.RawEntity
+                {
+                    Id = kv.Key
+                };
                 if (entityData0Offset.HasValue == true)
                 {
                     reader.Position = (int)entityData0Offset.Value;
@@ -787,7 +755,7 @@ namespace Gibbed.MassEffectAndromeda.SaveFormats
                 writer.WriteUInt32(unknown17);
             }
 
-            writer.WriteUInt16(0); // unknown18
+            writer.WriteUInt16(0);
 
             writer.WriteUInt16((ushort)this._Unknown12.Count);
             foreach (var unknown21 in this._Unknown12)
@@ -865,16 +833,9 @@ namespace Gibbed.MassEffectAndromeda.SaveFormats
 
                 reader.Position = (int)offsets[index];
 
-                /*
-                reader.PushFrameLength(24);
-                action(reader, agent);
-                reader.PopFrameLength();
-                */
-
                 var length = reader.ReadUInt32(24);
                 var dataPosition = reader.Position;
                 var dataBytes = reader.ReadBits((int)length);
-                //File.WriteAllBytes("agent_" + kv.Key + "_" + index + "_IN.bin", dataBytes);
                 var dataReader = new BitReader(dataBytes, dataPosition);
                 action(dataReader, agent);
             }
@@ -892,8 +853,7 @@ namespace Gibbed.MassEffectAndromeda.SaveFormats
             {
                 var agent = kv.Value;
 
-                uint[] offsets;
-                if (agentDataOffsets.TryGetValue(kv.Key, out offsets) == false)
+                if (agentDataOffsets.TryGetValue(kv.Key, out uint[] offsets) == false)
                 {
                     offsets = agentDataOffsets[kv.Key] = new uint[5];
                 }
@@ -904,8 +864,6 @@ namespace Gibbed.MassEffectAndromeda.SaveFormats
                 if (dataWriter.Position > 0)
                 {
                     var dataBytes = dataWriter.GetBytes();
-
-                    //File.WriteAllBytes("agent_" + kv.Key + "_" + index + "_OUT.bin", dataBytes);
 
                     offsets[index] = (uint)writer.Position;
                     writer.PushFrameLength(24);
@@ -934,7 +892,7 @@ namespace Gibbed.MassEffectAndromeda.SaveFormats
         {
             if (this.PropertyChanged != null)
             {
-                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
         #endregion

@@ -59,11 +59,7 @@ namespace Gibbed.MassEffectAndromeda.SaveFormats
 
                 if (typeof(T).IsAssignableFrom(type) == false)
                 {
-                    throw new InvalidOperationException(string.Format("'{0}' has has {1} but isn't a {2}",
-                                                                      type.Name,
-                                                                      typeof(A).Name,
-                                                                      typeof(T).Name));
-                    continue;
+                    throw new InvalidOperationException(string.Format("'{0}' has has {1} but isn't a {2}", type.Name, typeof(A).Name, typeof(T).Name));
                 }
 
                 var hash = GetNameHash(attribute.Name);
@@ -85,7 +81,7 @@ namespace Gibbed.MassEffectAndromeda.SaveFormats
             Type type;
             if (_Lookup.TryGetValue(nameHash, out type) == false)
             {
-                instance = default(T);
+                instance = default;
                 return false;
             }
 
@@ -98,9 +94,7 @@ namespace Gibbed.MassEffectAndromeda.SaveFormats
             T instance;
             if (Create(nameHash, out instance) == false)
             {
-                throw new ArgumentOutOfRangeException(
-                    "nameHash",
-                    "unknown agent for hash '" + nameHash.ToString("X8") + "'");
+                throw new ArgumentOutOfRangeException("nameHash", "unknown agent for hash '" + nameHash.ToString("X8") + "'");
             }
             return instance;
         }
@@ -111,9 +105,7 @@ namespace Gibbed.MassEffectAndromeda.SaveFormats
             var nameHash = GetNameHash(name);
             if (Create(nameHash, out instance) == false)
             {
-                throw new ArgumentOutOfRangeException(
-                    "name",
-                    "unknown agent for name '" + name + "'");
+                throw new ArgumentOutOfRangeException("name", "unknown agent for name '" + name + "'");
             }
             return instance;
         }

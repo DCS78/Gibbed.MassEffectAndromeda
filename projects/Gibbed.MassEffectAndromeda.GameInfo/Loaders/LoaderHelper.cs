@@ -42,8 +42,7 @@ namespace Gibbed.MassEffectAndromeda.GameInfo.Loaders
             var stream = (UnmanagedMemoryStream)assembly.GetManifestResourceStream(path);
             if (stream == null)
             {
-                throw new ArgumentException("The specified embedded resource could not be found.",
-                                            "embeddedResourceName");
+                throw new ArgumentException("The specified embedded resource could not be found.", "embeddedResourceName");
             }
             return stream;
         }
@@ -54,8 +53,7 @@ namespace Gibbed.MassEffectAndromeda.GameInfo.Loaders
             {
                 MissingMemberHandling = MissingMemberHandling.Error,
                 TypeNameHandling = TypeNameHandling.Auto,
-                Binder = new TypeNameSerializationBinder(
-                    "Gibbed.MassEffectAndromeda.GameInfo.Raw.{0}, Gibbed.MassEffectAndromeda.GameInfo")
+                SerializationBinder = new TypeNameSerializationBinder("Gibbed.MassEffectAndromeda.GameInfo.Raw.{0}, Gibbed.MassEffectAndromeda.GameInfo")
             };
             settings.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter());
 
@@ -70,7 +68,7 @@ namespace Gibbed.MassEffectAndromeda.GameInfo.Loaders
                     return serializer.Deserialize<TType>(jsonReader);
                 }
             }
-            catch (Exception e)
+            catch
             {
                 throw;
             }

@@ -20,9 +20,9 @@
  *    distribution.
  */
 
+using Gibbed.IO;
 using System;
 using System.IO;
-using Gibbed.IO;
 
 namespace Gibbed.Frostbite3.Unbundling
 {
@@ -50,9 +50,7 @@ namespace Gibbed.Frostbite3.Unbundling
                 if (header.CompressionFlags == CompressionFlags.None)
                 {
                     throw new NotSupportedException();
-                    header.CompressionType = header.CompressedBlockSize == header.UncompressedBlockSize
-                                                 ? CompressionType.None
-                                                 : CompressionType.Zlib;
+                    header.CompressionType = header.CompressedBlockSize == header.UncompressedBlockSize ? CompressionType.None : CompressionType.Zlib;
                     header.CompressionFlags = (CompressionFlags)7;
                 }
                 var compressedBlockSize = header.CompressedBlockSize;
@@ -147,17 +145,6 @@ namespace Gibbed.Frostbite3.Unbundling
             }
 
             var header = CompressionHeader.Read(input);
-            /*
-            if (header.CompressionFlags == CompressionFlags.None)
-            {
-                throw new NotSupportedException();
-                header.CompressionType = header.CompressedBlockSize == header.UncompressedBlockSize
-                                             ? CompressionType.None
-                                             : CompressionType.Zlib;
-                header.CompressionFlags = (CompressionFlags)7;
-            }
-            */
-
             if (header.UncompressedBlockSize > count)
             {
                 throw new ArgumentOutOfRangeException("count");
@@ -209,9 +196,7 @@ namespace Gibbed.Frostbite3.Unbundling
             if (header.CompressionFlags == CompressionFlags.None)
             {
                 throw new NotSupportedException();
-                header.CompressionType = header.CompressedBlockSize == header.UncompressedBlockSize
-                                             ? CompressionType.None
-                                             : CompressionType.Zlib;
+                header.CompressionType = header.CompressedBlockSize == header.UncompressedBlockSize ? CompressionType.None : CompressionType.Zlib;
                 header.CompressionFlags = (CompressionFlags)7;
             }
 
