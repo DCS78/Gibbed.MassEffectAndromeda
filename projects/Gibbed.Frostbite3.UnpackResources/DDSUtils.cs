@@ -1,4 +1,4 @@
-﻿/* Copyright (c) 2017 Rick (rick 'at' gibbed 'dot' us)
+/* Copyright (c) 2017 Rick (rick 'at' gibbed 'dot' us)
  * 
  * This software is provided 'as-is', without any express or implied
  * warranty. In no event will the authors be held liable for any damages
@@ -20,11 +20,11 @@
  *    distribution.
  */
 
-using Gibbed.Frostbite3.ResourceFormats;
-using Gibbed.IO;
 using System;
 using System.IO;
 using System.Text;
+using Gibbed.Frostbite3.ResourceFormats;
+using Gibbed.IO;
 
 namespace Gibbed.Frostbite3.UnpackResources
 {

@@ -1,4 +1,4 @@
-﻿/* Copyright (c) 2017 Rick (rick 'at' gibbed 'dot' us)
+/* Copyright (c) 2017 Rick (rick 'at' gibbed 'dot' us)
  * 
  * This software is provided 'as-is', without any express or implied
  * warranty. In no event will the authors be held liable for any damages
@@ -39,7 +39,7 @@ namespace Gibbed.MassEffectAndromeda.SaveFormats.Components
         private int _CurrentProfileId;
         private readonly List<Data.Profile> _Profiles;
         private int _CurrentPresetIndex;
-        private readonly List<Data.Preset> _Presets; 
+        private readonly List<Data.Preset> _Presets;
         #endregion
 
         public ProgressionComponent()

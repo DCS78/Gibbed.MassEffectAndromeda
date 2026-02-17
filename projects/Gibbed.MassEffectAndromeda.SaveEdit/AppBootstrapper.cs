@@ -1,4 +1,4 @@
-﻿/* Copyright (c) 2017 Rick (rick 'at' gibbed 'dot' us)
+/* Copyright (c) 2017 Rick (rick 'at' gibbed 'dot' us)
  * 
  * This software is provided 'as-is', without any express or implied
  * warranty. In no event will the authors be held liable for any damages
@@ -20,14 +20,17 @@
  *    distribution.
  */
 
-using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.Versioning;
 using System.Windows;
+using Caliburn.Micro;
+
+[assembly: SupportedOSPlatform("windows10.0")]
 
 namespace Gibbed.MassEffectAndromeda.SaveEdit
 {
@@ -49,31 +52,31 @@ namespace Gibbed.MassEffectAndromeda.SaveEdit
                                              ? ShortcutParser.CreateTrigger(triggerText)
                                              : currentParser(target, triggerText);
 
-            this._Container =
+            _Container =
                 new CompositionContainer(
                     new AggregateCatalog(AssemblySource.Instance.Select(x => new AssemblyCatalog(x))));
 
             var batch = new CompositionBatch();
             batch.AddExportedValue<IWindowManager>(new AppWindowManager());
             batch.AddExportedValue<IEventAggregator>(new EventAggregator());
-            batch.AddExportedValue(this._Container);
+            batch.AddExportedValue(_Container);
 
-            this._Container.Compose(batch);
+            _Container.Compose(batch);
         }
 
         protected override IEnumerable<Assembly> SelectAssemblies()
         {
-            return base.SelectAssemblies().Concat(new[]
-            {
+            return base.SelectAssemblies().Concat(
+            [
                 typeof(ResultExtensions).Assembly
-            });
+            ]);
         }
 
         protected override object GetInstance(Type serviceType, string key)
         {
             var contract = string.IsNullOrEmpty(key) ? AttributedModelServices.GetContractName(serviceType) : key;
 
-            var exports = this._Container.GetExportedValues<object>(contract).ToArray();
+            var exports = _Container.GetExportedValues<object>(contract).ToArray();
             if (exports.Length > 0)
             {
                 return exports[0];
@@ -85,12 +88,12 @@ namespace Gibbed.MassEffectAndromeda.SaveEdit
 
         protected override IEnumerable<object> GetAllInstances(Type serviceType)
         {
-            return this._Container.GetExportedValues<object>(AttributedModelServices.GetContractName(serviceType));
+            return _Container.GetExportedValues<object>(AttributedModelServices.GetContractName(serviceType));
         }
 
         protected override void BuildUp(object instance)
         {
-            this._Container.SatisfyImportsOnce(instance);
+            _Container.SatisfyImportsOnce(instance);
         }
 
         protected override void OnStartup(object sender, StartupEventArgs e)

@@ -1,4 +1,4 @@
-﻿/* Copyright (c) 2017 Rick (rick 'at' gibbed 'dot' us)
+/* Copyright (c) 2017 Rick (rick 'at' gibbed 'dot' us)
  * 
  * This software is provided 'as-is', without any express or implied
  * warranty. In no event will the authors be held liable for any damages
@@ -20,9 +20,9 @@
  *    distribution.
  */
 
-using Gibbed.IO;
 using System;
 using System.IO;
+using Gibbed.IO;
 
 namespace Gibbed.Frostbite3.Unbundling
 {
@@ -30,19 +30,12 @@ namespace Gibbed.Frostbite3.Unbundling
     {
         public static void Decompress(Stream input, Stream output, long originalSize)
         {
-            if (input == null)
-            {
-                throw new ArgumentNullException("input");
-            }
-
-            if (output == null)
-            {
-                throw new ArgumentNullException("output");
-            }
+            ArgumentNullException.ThrowIfNull(input);
+            ArgumentNullException.ThrowIfNull(output);
 
             var remaining = originalSize;
-            var work = new byte[0];
-            var buffer = new byte[0];
+            var work = Array.Empty<byte>();
+            var buffer = Array.Empty<byte>();
 
             while (remaining > 0)
             {
@@ -64,50 +57,50 @@ namespace Gibbed.Frostbite3.Unbundling
                 switch (header.CompressionType)
                 {
                     case CompressionType.None:
-                    {
-                        if (compressedBlockSize != uncompressedBlockSize)
                         {
-                            throw new InvalidOperationException();
-                        }
+                            if (compressedBlockSize != uncompressedBlockSize)
+                            {
+                                throw new InvalidOperationException();
+                            }
 
-                        output.WriteFromStream(input, compressedBlockSize);
-                        remaining -= compressedBlockSize;
-                        break;
-                    }
+                            output.WriteFromStream(input, compressedBlockSize);
+                            remaining -= compressedBlockSize;
+                            break;
+                        }
 
                     case CompressionType.Zstd:
-                    {
-                        if (work.Length < compressedBlockSize)
                         {
-                            Array.Resize(ref work, compressedBlockSize);
-                        }
+                            if (work.Length < compressedBlockSize)
+                            {
+                                Array.Resize(ref work, compressedBlockSize);
+                            }
 
-                        var read = input.Read(work, 0, compressedBlockSize);
-                        if (read != compressedBlockSize)
-                        {
-                            throw new EndOfStreamException();
-                        }
+                            var read = input.Read(work, 0, compressedBlockSize);
+                            if (read != compressedBlockSize)
+                            {
+                                throw new EndOfStreamException();
+                            }
 
-                        var result = Zstd.Decompress(work, 0, compressedBlockSize, buffer, 0, uncompressedBlockSize);
-                        if (Zstd.IsError(result) == true)
-                        {
-                            throw new InvalidOperationException();
-                        }
+                            var result = Zstd.Decompress(work, 0, compressedBlockSize, buffer, 0, uncompressedBlockSize);
+                            if (Zstd.IsError(result) == true)
+                            {
+                                throw new InvalidOperationException();
+                            }
 
-                        if (result != (uint)uncompressedBlockSize)
-                        {
-                            throw new InvalidOperationException();
-                        }
+                            if (result != (uint)uncompressedBlockSize)
+                            {
+                                throw new InvalidOperationException();
+                            }
 
-                        output.Write(buffer, 0, uncompressedBlockSize);
-                        remaining -= uncompressedBlockSize;
-                        break;
-                    }
+                            output.Write(buffer, 0, uncompressedBlockSize);
+                            remaining -= uncompressedBlockSize;
+                            break;
+                        }
 
                     default:
-                    {
-                        throw new NotSupportedException();
-                    }
+                        {
+                            throw new NotSupportedException();
+                        }
                 }
             }
         }
@@ -119,78 +112,62 @@ namespace Gibbed.Frostbite3.Unbundling
 
         public static int DecompressBlock(Stream input, byte[] buffer, int offset, int count, byte[] work)
         {
-            if (input == null)
-            {
-                throw new ArgumentNullException("input");
-            }
-
-            if (buffer == null)
-            {
-                throw new ArgumentNullException("buffer");
-            }
+            ArgumentNullException.ThrowIfNull(input);
+            ArgumentNullException.ThrowIfNull(buffer);
 
             if (offset < 0 || offset > buffer.Length)
             {
-                throw new ArgumentOutOfRangeException("offset");
+                throw new ArgumentOutOfRangeException(nameof(offset));
             }
 
             if (count < 0 || offset + count > buffer.Length)
             {
-                throw new ArgumentOutOfRangeException("count");
+                throw new ArgumentOutOfRangeException(nameof(count));
             }
 
-            if (work == null)
-            {
-                throw new ArgumentNullException("work");
-            }
+            ArgumentNullException.ThrowIfNull(work);
 
             var header = CompressionHeader.Read(input);
-            if (header.UncompressedBlockSize > count)
-            {
-                throw new ArgumentOutOfRangeException("count");
-            }
+            ArgumentOutOfRangeException.ThrowIfLessThan(count, header.UncompressedBlockSize);
 
             switch (header.CompressionType)
             {
                 case CompressionType.None:
-                {
-                    if (header.CompressedBlockSize != header.UncompressedBlockSize)
                     {
-                        throw new InvalidOperationException();
-                    }
+                        if (header.CompressedBlockSize != header.UncompressedBlockSize)
+                        {
+                            throw new InvalidOperationException();
+                        }
 
-                    return input.Read(buffer, offset, Math.Min(count, header.CompressedBlockSize));
-                }
+                        return input.Read(buffer, offset, Math.Min(count, header.CompressedBlockSize));
+                    }
 
                 case CompressionType.Zstd:
-                {
-                    var read = input.Read(work, 0, header.CompressedBlockSize);
-                    if (read != header.CompressedBlockSize)
                     {
-                        throw new EndOfStreamException();
-                    }
+                        var read = input.Read(work, 0, header.CompressedBlockSize);
+                        if (read != header.CompressedBlockSize)
+                        {
+                            throw new EndOfStreamException();
+                        }
 
-                    var result = Zstd.Decompress(work, 0, header.CompressedBlockSize, buffer, offset, count);
-                    if (Zstd.IsError(result) == true)
-                    {
-                        throw new InvalidOperationException();
+                        var result = Zstd.Decompress(work, 0, header.CompressedBlockSize, buffer, offset, count);
+                        if (Zstd.IsError(result) == true)
+                        {
+                            throw new InvalidOperationException();
+                        }
+                        return (int)result;
                     }
-                    return (int)result;
-                }
 
                 default:
-                {
-                    throw new NotSupportedException();
-                }
+                    {
+                        throw new NotSupportedException();
+                    }
             }
         }
 
         public static void SkipBlock(Stream input)
         {
-            if (input == null)
-            {
-                throw new ArgumentNullException("input");
-            }
+            ArgumentNullException.ThrowIfNull(input);
 
             var header = CompressionHeader.Read(input);
             if (header.CompressionFlags == CompressionFlags.None)
@@ -204,15 +181,15 @@ namespace Gibbed.Frostbite3.Unbundling
             {
                 case CompressionType.None:
                 case CompressionType.Zstd:
-                {
-                    input.Seek(header.CompressedBlockSize, SeekOrigin.Current);
-                    break;
-                }
+                    {
+                        input.Seek(header.CompressedBlockSize, SeekOrigin.Current);
+                        break;
+                    }
 
                 default:
-                {
-                    throw new NotSupportedException();
-                }
+                    {
+                        throw new NotSupportedException();
+                    }
             }
         }
     }

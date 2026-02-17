@@ -1,4 +1,4 @@
-﻿/* Copyright (c) 2017 Rick (rick 'at' gibbed 'dot' us)
+/* Copyright (c) 2017 Rick (rick 'at' gibbed 'dot' us)
  * 
  * This software is provided 'as-is', without any express or implied
  * warranty. In no event will the authors be held liable for any damages
@@ -96,31 +96,31 @@ namespace Gibbed.Frostbite3.VfsFormats.FileLayers
             switch (mode)
             {
                 case 1:
-                {
-                    throw new NotImplementedException();
-                }
+                    {
+                        throw new NotImplementedException();
+                    }
 
                 case 2:
-                {
-                    var seed = setupData[5];
-                    var magic = seed;
-                    input.Position = basePosition;
-                    var bytes = input.ReadBytes((int)fileSize);
-                    for (int i = 0; i < bytes.Length; i++)
                     {
-                        var b = bytes[i];
-                        bytes[i] = (byte)(b ^ magic);
-                        magic = (byte)((b ^ seed) - i);
+                        var seed = setupData[5];
+                        var magic = seed;
+                        input.Position = basePosition;
+                        var bytes = input.ReadBytes((int)fileSize);
+                        for (int i = 0; i < bytes.Length; i++)
+                        {
+                            var b = bytes[i];
+                            bytes[i] = (byte)(b ^ magic);
+                            magic = (byte)((b ^ seed) - i);
+                        }
+                        return new MemoryStream(bytes, false);
                     }
-                    return new MemoryStream(bytes, false);
-                }
 
                 case 3:
-                {
-                    input.Position = basePosition;
-                    var bytes = input.ReadBytes((int)fileSize);
-                    return new MemoryStream(bytes, false);
-                }
+                    {
+                        input.Position = basePosition;
+                        var bytes = input.ReadBytes((int)fileSize);
+                        return new MemoryStream(bytes, false);
+                    }
             }
             throw new NotSupportedException();
         }
@@ -199,10 +199,10 @@ namespace Gibbed.Frostbite3.VfsFormats.FileLayers
                     case 2:
                     case 4:
                     case 8:
-                    {
-                        data[5] ^= e;
-                        break;
-                    }
+                        {
+                            data[5] ^= e;
+                            break;
+                        }
                 }
             }
 

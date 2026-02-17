@@ -1,4 +1,4 @@
-﻿/* Copyright (c) 2017 Rick (rick 'at' gibbed 'dot' us)
+/* Copyright (c) 2017 Rick (rick 'at' gibbed 'dot' us)
  * 
  * This software is provided 'as-is', without any express or implied
  * warranty. In no event will the authors be held liable for any damages
@@ -44,117 +44,119 @@ namespace Gibbed.MassEffectAndromeda.SaveFormats.Data
 
         public PartyMemberSnapshot()
         {
-            this._ActiveSkills = new List<PartyMemberActiveSkill>();
+            _ActiveSkills = [];
         }
 
         #region Properties
         [JsonProperty("level")]
         public int Level
         {
-            get { return this._Level; }
+            get { return _Level; }
             set
             {
-                this._Level = value;
-                this.NotifyPropertyChanged("Level");
+                _Level = value;
+                NotifyPropertyChanged(nameof(Level));
             }
         }
 
         [JsonProperty("skill_point_count")]
         public int SkillPointCount
         {
-            get { return this._SkillPointCount; }
+            get { return _SkillPointCount; }
             set
             {
-                this._SkillPointCount = value;
-                this.NotifyPropertyChanged("SkillPointCount");
+                _SkillPointCount = value;
+                NotifyPropertyChanged(nameof(SkillPointCount));
             }
         }
 
         [JsonProperty("lowest_purchasable_skill_cost")]
         public int LowestPurchasableSkillCost
         {
-            get { return this._LowestPurchasableSkillCost; }
+            get { return _LowestPurchasableSkillCost; }
             set
             {
-                this._LowestPurchasableSkillCost = value;
-                this.NotifyPropertyChanged("LowestPurchasableSkillCost");
+                _LowestPurchasableSkillCost = value;
+                NotifyPropertyChanged(nameof(LowestPurchasableSkillCost));
             }
         }
 
         [JsonProperty("skill_point_per_level")]
         public int SkillPointPerLevel
         {
-            get { return this._SkillPointPerLevel; }
+            get { return _SkillPointPerLevel; }
             set
             {
-                this._SkillPointPerLevel = value;
-                this.NotifyPropertyChanged("SkillPointPerLevel");
+                _SkillPointPerLevel = value;
+                NotifyPropertyChanged(nameof(SkillPointPerLevel));
             }
         }
 
         [JsonProperty("character_id")]
         public int CharacterId
         {
-            get { return this._CharacterId; }
+            get { return _CharacterId; }
             set
             {
-                this._CharacterId = value;
-                this.NotifyPropertyChanged("CharacterId");
+                _CharacterId = value;
+                NotifyPropertyChanged(nameof(CharacterId));
             }
         }
 
         [JsonProperty("maximum_shields")]
         public int MaximumShields
         {
-            get { return this._MaximumShields; }
+            get { return _MaximumShields; }
             set
             {
-                this._MaximumShields = value;
-                this.NotifyPropertyChanged("MaximumShields");
+                _MaximumShields = value;
+                NotifyPropertyChanged(nameof(MaximumShields));
             }
         }
 
         [JsonProperty("maximum_health")]
         public int MaximumHealth
         {
-            get { return this._MaximumHealth; }
+            get { return _MaximumHealth; }
             set
             {
-                this._MaximumHealth = value;
-                this.NotifyPropertyChanged("MaximumHealth");
+                _MaximumHealth = value;
+                NotifyPropertyChanged(nameof(MaximumHealth));
             }
         }
 
         [JsonProperty("active_skills")]
         public List<PartyMemberActiveSkill> ActiveSkills
         {
-            get { return this._ActiveSkills; }
+            get { return _ActiveSkills; }
         }
         #endregion
 
         internal void Read(IBitReader reader, uint version)
         {
-            this._ActiveSkills.Clear();
+            _ActiveSkills.Clear();
             if (version >= 11)
             {
                 reader.PushFrameLength(24);
-                this._Level = reader.ReadInt32();
-                this._SkillPointCount = reader.ReadInt32();
-                this._LowestPurchasableSkillCost = reader.ReadInt32();
-                this._SkillPointPerLevel = reader.ReadInt32();
-                this._CharacterId = reader.ReadInt32();
-                this._MaximumShields = reader.ReadInt32();
-                this._MaximumHealth = reader.ReadInt32();
+                _Level = reader.ReadInt32();
+                _SkillPointCount = reader.ReadInt32();
+                _LowestPurchasableSkillCost = reader.ReadInt32();
+                _SkillPointPerLevel = reader.ReadInt32();
+                _CharacterId = reader.ReadInt32();
+                _MaximumShields = reader.ReadInt32();
+                _MaximumHealth = reader.ReadInt32();
                 var activeSkillCount = reader.ReadUInt16();
-                for (int i = 0; i < activeSkillCount; i++)
+                for (var i = 0; i < activeSkillCount; i++)
                 {
                     reader.PushFrameLength(24);
-                    var activeSkill = new PartyMemberActiveSkill();
-                    activeSkill.LineHash = reader.ReadInt32();
-                    activeSkill.LineRank = reader.ReadInt32();
-                    activeSkill.GroupHash = reader.ReadInt32();
-                    activeSkill.GroupTypeId = reader.ReadInt32();
-                    this._ActiveSkills.Add(activeSkill);
+                    var activeSkill = new PartyMemberActiveSkill
+                    {
+                        LineHash = reader.ReadInt32(),
+                        LineRank = reader.ReadInt32(),
+                        GroupHash = reader.ReadInt32(),
+                        GroupTypeId = reader.ReadInt32()
+                    };
+                    _ActiveSkills.Add(activeSkill);
                     reader.PopFrameLength();
                 }
                 reader.PopFrameLength();
@@ -170,15 +172,15 @@ namespace Gibbed.MassEffectAndromeda.SaveFormats.Data
         internal void Write(IBitWriter writer)
         {
             writer.PushFrameLength(24);
-            writer.WriteInt32(this._Level);
-            writer.WriteInt32(this._SkillPointCount);
-            writer.WriteInt32(this._LowestPurchasableSkillCost);
-            writer.WriteInt32(this._SkillPointPerLevel);
-            writer.WriteInt32(this._CharacterId);
-            writer.WriteInt32(this._MaximumShields);
-            writer.WriteInt32(this._MaximumHealth);
-            writer.WriteUInt16((ushort)this._ActiveSkills.Count);
-            foreach (var activeSkill in this._ActiveSkills)
+            writer.WriteInt32(_Level);
+            writer.WriteInt32(_SkillPointCount);
+            writer.WriteInt32(_LowestPurchasableSkillCost);
+            writer.WriteInt32(_SkillPointPerLevel);
+            writer.WriteInt32(_CharacterId);
+            writer.WriteInt32(_MaximumShields);
+            writer.WriteInt32(_MaximumHealth);
+            writer.WriteUInt16((ushort)_ActiveSkills.Count);
+            foreach (PartyMemberActiveSkill activeSkill in _ActiveSkills)
             {
                 writer.PushFrameLength(24);
                 writer.WriteInt32(activeSkill.LineHash);
@@ -195,10 +197,7 @@ namespace Gibbed.MassEffectAndromeda.SaveFormats.Data
 
         private void NotifyPropertyChanged(string propertyName)
         {
-            if (this.PropertyChanged != null)
-            {
-                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
     }

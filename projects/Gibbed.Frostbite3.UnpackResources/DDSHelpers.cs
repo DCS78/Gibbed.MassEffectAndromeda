@@ -1,4 +1,4 @@
-﻿/* Copyright (c) 2017 Rick (rick 'at' gibbed 'dot' us)
+/* Copyright (c) 2017 Rick (rick 'at' gibbed 'dot' us)
  * 
  * This software is provided 'as-is', without any express or implied
  * warranty. In no event will the authors be held liable for any damages
@@ -29,37 +29,37 @@ namespace Gibbed.Frostbite3.UnpackResources
     {
         // ReSharper disable InconsistentNaming
         public static uint GetFourCC(TextureFormat format)
-            // ReSharper restore InconsistentNaming
+        // ReSharper restore InconsistentNaming
         {
             switch (format)
             {
                 case TextureFormat.BC1_UNORM:
                 case TextureFormat.BC1_SRGB:
-                {
-                    return 0x31545844; // 'DXT1'
-                }
+                    {
+                        return 0x31545844; // 'DXT1'
+                    }
 
                 case TextureFormat.BC2_UNORM:
                 case TextureFormat.BC2_SRGB:
-                {
-                    return 0x33545844; // 'DXT3'
-                }
+                    {
+                        return 0x33545844; // 'DXT3'
+                    }
 
                 case TextureFormat.BC3_UNORM:
                 case TextureFormat.BC3_SRGB:
-                {
-                    return 0x35545844; // 'DXT5'
-                }
+                    {
+                        return 0x35545844; // 'DXT5'
+                    }
 
                 case TextureFormat.BC4_UNORM:
-                {
-                    return 0x31495441; // 'ATI1'
-                }
+                    {
+                        return 0x31495441; // 'ATI1'
+                    }
 
                 case TextureFormat.BC5_UNORM:
-                {
-                    return 0x32495441; // 'ATI2'
-                }
+                    {
+                        return 0x32495441; // 'ATI2'
+                    }
             }
 
             throw new NotSupportedException();
@@ -67,30 +67,30 @@ namespace Gibbed.Frostbite3.UnpackResources
 
         // ReSharper disable InconsistentNaming
         public static uint GetDXGIFormat(TextureFormat format)
-            // ReSharper restore InconsistentNaming
+        // ReSharper restore InconsistentNaming
         {
             switch (format)
             {
                 case (TextureFormat)29:
-                {
-                    // probably not right
-                    return 67;
-                }
+                    {
+                        // probably not right
+                        return 67;
+                    }
 
                 case (TextureFormat)64:
-                {
-                    return 95;
-                }
+                    {
+                        return 95;
+                    }
 
                 case TextureFormat.BC7_UNORM:
-                {
-                    return 98;
-                }
+                    {
+                        return 98;
+                    }
 
                 case TextureFormat.BC7_SRGB:
-                {
-                    return 99;
-                }
+                    {
+                        return 99;
+                    }
             }
 
             throw new NotSupportedException();

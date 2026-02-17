@@ -1,8 +1,11 @@
-﻿using Microsoft.Xaml.Behaviors;
 using System;
 using System.Diagnostics;
+using System.Runtime.Versioning;
 using System.Windows;
 using System.Windows.Input;
+using Microsoft.Xaml.Behaviors;
+
+[assembly: SupportedOSPlatform("windows10.0")]
 
 namespace Gibbed.MassEffectAndromeda.SaveEdit
 {

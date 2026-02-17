@@ -1,4 +1,4 @@
-﻿/* Copyright (c) 2017 Rick (rick 'at' gibbed 'dot' us)
+/* Copyright (c) 2017 Rick (rick 'at' gibbed 'dot' us)
  * 
  * This software is provided 'as-is', without any express or implied
  * warranty. In no event will the authors be held liable for any damages
@@ -39,22 +39,22 @@ namespace Gibbed.MassEffectAndromeda.SaveEdit.Core
         [Import(typeof(ShellViewModel))]
         public ShellViewModel Shell
         {
-            get { return this._Shell; }
+            get { return _Shell; }
             set
             {
-                this._Shell = value;
-                this.NotifyOfPropertyChange(() => this.Shell);
+                _Shell = value;
+                NotifyOfPropertyChange(() => Shell);
             }
         }
 
         [Import(typeof(SaveLoad))]
         public SaveLoad SaveLoad
         {
-            get { return this._SaveLoad; }
+            get { return _SaveLoad; }
             set
             {
-                this._SaveLoad = value;
-                this.NotifyOfPropertyChange(() => this.SaveLoad);
+                _SaveLoad = value;
+                NotifyOfPropertyChange(() => SaveLoad);
             }
         }
         #endregion
@@ -80,7 +80,7 @@ namespace Gibbed.MassEffectAndromeda.SaveEdit.Core
 
         public IEnumerable<IResult> DoExportSlot1()
         {
-            var agent = this.Shell.SaveFile.Data.GetComponentContainerAgent<CustomizationAgent>();
+            CustomizationAgent agent = Shell.SaveFile.Data.GetComponentContainerAgent<CustomizationAgent>();
             if (agent == null)
             {
                 yield return new MyMessageBox("Customization data appears to be missing.", "Error")
@@ -96,9 +96,7 @@ namespace Gibbed.MassEffectAndromeda.SaveEdit.Core
             }
 
             byte[] dataBytes;
-            using (var data = new MemoryStream())
-            {
-            }
+            using var data = new MemoryStream();
         }
     }
 }

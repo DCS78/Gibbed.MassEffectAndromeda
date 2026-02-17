@@ -1,4 +1,4 @@
-﻿using Caliburn.Micro;
+using Caliburn.Micro;
 using Gibbed.MassEffectAndromeda.SaveFormats.Items;
 
 namespace Gibbed.MassEffectAndromeda.SaveEdit.Items
@@ -128,70 +128,70 @@ namespace Gibbed.MassEffectAndromeda.SaveEdit.Items
                     switch (tier)
                     {
                         case 0:
-                        {
-                            name += " I";
-                            break;
-                        }
+                            {
+                                name += " I";
+                                break;
+                            }
 
                         case 1:
-                        {
-                            name += " II";
-                            break;
-                        }
+                            {
+                                name += " II";
+                                break;
+                            }
 
                         case 2:
-                        {
-                            name += " III";
-                            break;
-                        }
+                            {
+                                name += " III";
+                                break;
+                            }
 
                         case 3:
-                        {
-                            name += " IV";
-                            break;
-                        }
+                            {
+                                name += " IV";
+                                break;
+                            }
 
                         case 4:
-                        {
-                            name += " V";
-                            break;
-                        }
+                            {
+                                name += " V";
+                                break;
+                            }
 
                         case 5:
-                        {
-                            name += " VI";
-                            break;
-                        }
+                            {
+                                name += " VI";
+                                break;
+                            }
 
                         case 6:
-                        {
-                            name += " VII";
-                            break;
-                        }
+                            {
+                                name += " VII";
+                                break;
+                            }
 
                         case 7:
-                        {
-                            name += " VIII";
-                            break;
-                        }
+                            {
+                                name += " VIII";
+                                break;
+                            }
 
                         case 8:
-                        {
-                            name += " IX";
-                            break;
-                        }
+                            {
+                                name += " IX";
+                                break;
+                            }
 
                         case 9:
-                        {
-                            name += " X";
-                            break;
-                        }
+                            {
+                                name += " X";
+                                break;
+                            }
 
                         default:
-                        {
-                            name += " #" + tier;
-                            break;
-                        }
+                            {
+                                name += " #" + tier;
+                                break;
+                            }
                     }
                 }
             }

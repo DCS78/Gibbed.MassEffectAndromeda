@@ -1,4 +1,4 @@
-﻿#define DEBUG_READING
+#define DEBUG_READING
 
 /* Copyright (c) 2017 Rick (rick 'at' gibbed 'dot' us)
  * 
@@ -24,7 +24,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Dynamic;
 using System.Linq;
 using DJB = Gibbed.Frostbite3.Common.Hashing.DJB;
 

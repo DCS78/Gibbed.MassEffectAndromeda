@@ -1,4 +1,4 @@
-﻿/* Copyright (c) 2017 Rick (rick 'at' gibbed 'dot' us)
+/* Copyright (c) 2017 Rick (rick 'at' gibbed 'dot' us)
  * 
  * This software is provided 'as-is', without any express or implied
  * warranty. In no event will the authors be held liable for any damages
@@ -204,7 +204,7 @@ namespace Gibbed.MassEffectAndromeda.SaveFormats.CustomizedParameters
             {
                 writer.WriteFloat32(instance.Value);
             }
-            
+
             writer.WriteUInt8(this._Unknown4);
             writer.WriteUInt32(this._HeadTextureId);
 

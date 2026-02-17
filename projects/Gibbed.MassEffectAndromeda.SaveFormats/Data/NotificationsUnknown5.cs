@@ -1,4 +1,4 @@
-﻿/* Copyright (c) 2017 Rick (rick 'at' gibbed 'dot' us)
+/* Copyright (c) 2017 Rick (rick 'at' gibbed 'dot' us)
  * 
  * This software is provided 'as-is', without any express or implied
  * warranty. In no event will the authors be held liable for any damages
@@ -78,21 +78,21 @@ namespace Gibbed.MassEffectAndromeda.SaveFormats.Data
                     {
                         case NotificationsType.Unknown0:
                         case NotificationsType.Unknown1:
-                        {
-                            unknown.Unknown1 = reader.ReadUInt32();
-                            break;
-                        }
+                            {
+                                unknown.Unknown1 = reader.ReadUInt32();
+                                break;
+                            }
 
                         case NotificationsType.Unknown2:
-                        {
-                            unknown.Unknown2 = reader.ReadString();
-                            break;
-                        }
+                            {
+                                unknown.Unknown2 = reader.ReadString();
+                                break;
+                            }
 
                         default:
-                        {
-                            throw new FormatException();
-                        }
+                            {
+                                throw new FormatException();
+                            }
                     }
                     this._Unknown.Add(unknown);
                 }
@@ -109,21 +109,21 @@ namespace Gibbed.MassEffectAndromeda.SaveFormats.Data
                     {
                         case NotificationsType.Unknown0:
                         case NotificationsType.Unknown1:
-                        {
-                            unknown.Unknown1 = reader.ReadUInt32();
-                            break;
-                        }
+                            {
+                                unknown.Unknown1 = reader.ReadUInt32();
+                                break;
+                            }
 
                         case NotificationsType.Unknown2:
-                        {
-                            unknown.Unknown2 = reader.ReadString();
-                            break;
-                        }
+                            {
+                                unknown.Unknown2 = reader.ReadString();
+                                break;
+                            }
 
                         default:
-                        {
-                            throw new FormatException();
-                        }
+                            {
+                                throw new FormatException();
+                            }
                     }
                     this._Unknown.Add(unknown);
                     reader.PopFrameLength();
@@ -142,21 +142,21 @@ namespace Gibbed.MassEffectAndromeda.SaveFormats.Data
                 {
                     case NotificationsType.Unknown0:
                     case NotificationsType.Unknown1:
-                    {
-                        writer.WriteUInt32(unknown.Unknown1);
-                        break;
-                    }
+                        {
+                            writer.WriteUInt32(unknown.Unknown1);
+                            break;
+                        }
 
                     case NotificationsType.Unknown2:
-                    {
-                        writer.WriteString(unknown.Unknown2);
-                        break;
-                    }
+                        {
+                            writer.WriteString(unknown.Unknown2);
+                            break;
+                        }
 
                     default:
-                    {
-                        throw new FormatException();
-                    }
+                        {
+                            throw new FormatException();
+                        }
                 }
                 writer.PopFrameLength();
             }

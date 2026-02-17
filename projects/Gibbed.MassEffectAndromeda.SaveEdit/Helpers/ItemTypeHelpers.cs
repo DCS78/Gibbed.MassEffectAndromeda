@@ -1,4 +1,4 @@
-﻿/* Copyright (c) 2017 Rick (rick 'at' gibbed 'dot' us)
+/* Copyright (c) 2017 Rick (rick 'at' gibbed 'dot' us)
  * 
  * This software is provided 'as-is', without any express or implied
  * warranty. In no event will the authors be held liable for any damages
@@ -31,89 +31,89 @@ namespace Gibbed.MassEffectAndromeda.SaveEdit
             switch (type)
             {
                 case ItemType.Invalid:
-                {
-                    return "Misc";
-                }
+                    {
+                        return "Misc";
+                    }
 
                 case ItemType.Power:
-                {
-                    return "Power";
-                }
+                    {
+                        return "Power";
+                    }
 
                 case ItemType.RangedWeapon:
-                {
-                    return "Ranged Weapon";
-                }
+                    {
+                        return "Ranged Weapon";
+                    }
 
                 case ItemType.MeleeWeapon:
-                {
-                    return "Melee Weapon";
-                }
+                    {
+                        return "Melee Weapon";
+                    }
 
                 case ItemType.WeaponPart:
-                {
-                    return "Weapon Part";
-                }
+                    {
+                        return "Weapon Part";
+                    }
 
                 case ItemType.Gear:
-                {
-                    return "Gear";
-                }
+                    {
+                        return "Gear";
+                    }
 
                 case ItemType.GearPart:
-                {
-                    return "Gear Part";
-                }
+                    {
+                        return "Gear Part";
+                    }
 
                 case ItemType.SpaceTool:
-                {
-                    return "Space Tool";
-                }
+                    {
+                        return "Space Tool";
+                    }
 
                 case ItemType.Consumable:
-                {
-                    return "Consumable";
-                }
+                    {
+                        return "Consumable";
+                    }
 
                 case ItemType.Research:
-                {
-                    return "Research";
-                }
+                    {
+                        return "Research";
+                    }
 
                 case ItemType.Resource:
-                {
-                    return "Resource";
-                }
+                    {
+                        return "Resource";
+                    }
 
                 case ItemType.AugmentationMaterial:
-                {
-                    return "Augmentation";
-                }
+                    {
+                        return "Augmentation";
+                    }
 
                 case ItemType.MakoMod:
-                {
-                    return "Nomad Mod";
-                }
+                    {
+                        return "Nomad Mod";
+                    }
 
                 case ItemType.MakoSkin:
-                {
-                    return "Nomad Skin";
-                }
+                    {
+                        return "Nomad Skin";
+                    }
 
                 case ItemType.Plot:
-                {
-                    return "Plot";
-                }
+                    {
+                        return "Plot";
+                    }
 
                 case ItemType.CasualOutfit:
-                {
-                    return "Casual Outfit";
-                }
+                    {
+                        return "Casual Outfit";
+                    }
 
                 case ItemType.PassiveSkill:
-                {
-                    return "Passive Skill";
-                }
+                    {
+                        return "Passive Skill";
+                    }
             }
 
             return null;
@@ -124,89 +124,89 @@ namespace Gibbed.MassEffectAndromeda.SaveEdit
             switch (type)
             {
                 case ItemType.Invalid:
-                {
-                    return (int)ItemTypeOrder.Invalid;
-                }
+                    {
+                        return (int)ItemTypeOrder.Invalid;
+                    }
 
                 case ItemType.Power:
-                {
-                    return (int)ItemTypeOrder.Power;
-                }
+                    {
+                        return (int)ItemTypeOrder.Power;
+                    }
 
                 case ItemType.RangedWeapon:
-                {
-                    return (int)ItemTypeOrder.RangedWeapon;
-                }
+                    {
+                        return (int)ItemTypeOrder.RangedWeapon;
+                    }
 
                 case ItemType.MeleeWeapon:
-                {
-                    return (int)ItemTypeOrder.MeleeWeapon;
-                }
+                    {
+                        return (int)ItemTypeOrder.MeleeWeapon;
+                    }
 
                 case ItemType.WeaponPart:
-                {
-                    return (int)ItemTypeOrder.WeaponPart;
-                }
+                    {
+                        return (int)ItemTypeOrder.WeaponPart;
+                    }
 
                 case ItemType.Gear:
-                {
-                    return (int)ItemTypeOrder.Gear;
-                }
+                    {
+                        return (int)ItemTypeOrder.Gear;
+                    }
 
                 case ItemType.GearPart:
-                {
-                    return (int)ItemTypeOrder.GearPart;
-                }
+                    {
+                        return (int)ItemTypeOrder.GearPart;
+                    }
 
                 case ItemType.SpaceTool:
-                {
-                    return (int)ItemTypeOrder.SpaceTool;
-                }
+                    {
+                        return (int)ItemTypeOrder.SpaceTool;
+                    }
 
                 case ItemType.Consumable:
-                {
-                    return (int)ItemTypeOrder.Consumable;
-                }
+                    {
+                        return (int)ItemTypeOrder.Consumable;
+                    }
 
                 case ItemType.Research:
-                {
-                    return (int)ItemTypeOrder.Research;
-                }
+                    {
+                        return (int)ItemTypeOrder.Research;
+                    }
 
                 case ItemType.Resource:
-                {
-                    return (int)ItemTypeOrder.Resource;
-                }
+                    {
+                        return (int)ItemTypeOrder.Resource;
+                    }
 
                 case ItemType.AugmentationMaterial:
-                {
-                    return (int)ItemTypeOrder.AugmentationMaterial;
-                }
+                    {
+                        return (int)ItemTypeOrder.AugmentationMaterial;
+                    }
 
                 case ItemType.MakoMod:
-                {
-                    return (int)ItemTypeOrder.MakoMod;
-                }
+                    {
+                        return (int)ItemTypeOrder.MakoMod;
+                    }
 
                 case ItemType.MakoSkin:
-                {
-                    return (int)ItemTypeOrder.MakoSkin;
-                }
+                    {
+                        return (int)ItemTypeOrder.MakoSkin;
+                    }
 
                 case ItemType.Plot:
-                {
-                    return (int)ItemTypeOrder.Plot;
-                }
+                    {
+                        return (int)ItemTypeOrder.Plot;
+                    }
 
                 case ItemType.CasualOutfit:
-                {
-                    return (int)ItemTypeOrder.CasualOutfit;
-                }
+                    {
+                        return (int)ItemTypeOrder.CasualOutfit;
+                    }
 
                 case ItemType.PassiveSkill:
-                {
-                    return (int)ItemTypeOrder.PassiveSkill;
-                }
+                    {
+                        return (int)ItemTypeOrder.PassiveSkill;
+                    }
             }
 
             return int.MaxValue;

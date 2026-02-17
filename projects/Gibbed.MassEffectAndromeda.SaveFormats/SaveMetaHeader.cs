@@ -1,4 +1,4 @@
-﻿/* Copyright (c) 2017 Rick (rick 'at' gibbed 'dot' us)
+/* Copyright (c) 2017 Rick (rick 'at' gibbed 'dot' us)
  * 
  * This software is provided 'as-is', without any express or implied
  * warranty. In no event will the authors be held liable for any damages
@@ -87,7 +87,7 @@ namespace Gibbed.MassEffectAndromeda.SaveFormats
             }
 
             var count = input.ReadValueU32(endian);
-            var values = new List<KeyValuePair<uint, string>>(); 
+            var values = new List<KeyValuePair<uint, string>>();
             for (uint i = 0; i < count; i++)
             {
                 var nameHash = input.ReadValueU32(endian);

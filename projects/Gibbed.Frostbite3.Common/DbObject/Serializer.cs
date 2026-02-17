@@ -1,4 +1,4 @@
-﻿/* Copyright (c) 2017 Rick (rick 'at' gibbed 'dot' us)
+/* Copyright (c) 2017 Rick (rick 'at' gibbed 'dot' us)
  * 
  * This software is provided 'as-is', without any express or implied
  * warranty. In no event will the authors be held liable for any damages
@@ -312,77 +312,77 @@ namespace Gibbed.Frostbite3.Common.DbObject
             switch (tag.Type)
             {
                 case ValueType.Array:
-                {
-                    return this.ReadArray(input, tag, objectType);
-                }
+                    {
+                        return this.ReadArray(input, tag, objectType);
+                    }
 
                 case ValueType.Object:
-                {
-                    return objectType == typeof(object) || objectType == typeof(Dictionary<string, object>)
-                               ? this.ReadDictionary(input, tag, objectType)
-                               : this.ReadObject(input, tag, objectType);
-                }
+                    {
+                        return objectType == typeof(object) || objectType == typeof(Dictionary<string, object>)
+                                   ? this.ReadDictionary(input, tag, objectType)
+                                   : this.ReadObject(input, tag, objectType);
+                    }
 
                 case ValueType.Bool:
-                {
-                    return input.ReadValueU8() != 0;
-                }
+                    {
+                        return input.ReadValueU8() != 0;
+                    }
 
                 case ValueType.String:
-                {
-                    return this.ReadString(input, tag, objectType);
-                }
+                    {
+                        return this.ReadString(input, tag, objectType);
+                    }
 
                 case ValueType.Int32:
-                {
-                    return input.ReadValueS32(Endian.Little);
-                }
+                    {
+                        return input.ReadValueS32(Endian.Little);
+                    }
 
                 case ValueType.Int64:
-                {
-                    return input.ReadValueS64(Endian.Little);
-                }
+                    {
+                        return input.ReadValueS64(Endian.Little);
+                    }
 
                 case ValueType.Float64:
-                {
-                    return input.ReadValueF64(Endian.Little);
-                }
+                    {
+                        return input.ReadValueF64(Endian.Little);
+                    }
 
                 case ValueType.Guid:
-                {
-                    return input.ReadValueGuid(Endian.Big);
-                }
+                    {
+                        return input.ReadValueGuid(Endian.Big);
+                    }
 
                 case ValueType.SHA1:
-                {
-                    var bytes = input.ReadBytes(20);
-                    return new SHA1Hash(bytes);
-                }
+                    {
+                        var bytes = input.ReadBytes(20);
+                        return new SHA1Hash(bytes);
+                    }
 
                 case ValueType.Bytes:
-                {
-                    var length = input.ReadPackedValueUInt32();
-                    var basePosition = input.Position;
-                    var endPosition = basePosition + length;
-                    if (endPosition > input.Length)
                     {
-                        throw new EndOfStreamException();
+                        var length = input.ReadPackedValueUInt32();
+                        var basePosition = input.Position;
+                        var endPosition = basePosition + length;
+                        if (endPosition > input.Length)
+                        {
+                            throw new EndOfStreamException();
+                        }
+
+                        if (length > int.MaxValue)
+                        {
+                            throw new InvalidOperationException();
+                        }
+
+                        var value = input.ReadBytes((int)length);
+
+                        if (input.Position != endPosition)
+                        {
+                            throw new FormatException();
+                        }
+
+                        return value;
                     }
-
-                    if (length > int.MaxValue)
-                    {
-                        throw new InvalidOperationException();
-                    }
-
-                    var value = input.ReadBytes((int)length);
-
-                    if (input.Position != endPosition)
-                    {
-                        throw new FormatException();
-                    }
-
-                    return value;
-                }
             }
 
             throw new NotSupportedException();

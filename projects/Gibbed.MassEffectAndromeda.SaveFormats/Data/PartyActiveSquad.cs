@@ -1,4 +1,4 @@
-﻿/* Copyright (c) 2017 Rick (rick 'at' gibbed 'dot' us)
+/* Copyright (c) 2017 Rick (rick 'at' gibbed 'dot' us)
  * 
  * This software is provided 'as-is', without any express or implied
  * warranty. In no event will the authors be held liable for any damages
@@ -21,8 +21,8 @@
  */
 
 using System.Collections.Generic;
-using Gibbed.MassEffectAndromeda.FileFormats;
 using System.ComponentModel;
+using Gibbed.MassEffectAndromeda.FileFormats;
 using Newtonsoft.Json;
 
 namespace Gibbed.MassEffectAndromeda.SaveFormats.Data

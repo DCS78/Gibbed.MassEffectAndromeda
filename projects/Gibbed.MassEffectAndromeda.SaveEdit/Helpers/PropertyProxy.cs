@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Threading;
@@ -21,7 +21,7 @@ namespace Gibbed.MassEffectAndromeda.SaveEdit
         static PropertyProxy()
         {
             var inMetadata = new FrameworkPropertyMetadata(
-                delegate(DependencyObject p, DependencyPropertyChangedEventArgs args)
+                delegate (DependencyObject p, DependencyPropertyChangedEventArgs args)
                 {
                     if (null != BindingOperations.GetBinding(p, OutProperty))
                     {
@@ -43,7 +43,7 @@ namespace Gibbed.MassEffectAndromeda.SaveEdit
                                                      inMetadata);
 
             var outMetadata = new FrameworkPropertyMetadata(
-                delegate(DependencyObject p, DependencyPropertyChangedEventArgs args)
+                delegate (DependencyObject p, DependencyPropertyChangedEventArgs args)
                 {
                     ValueSource source = DependencyPropertyHelper.GetValueSource(p, args.Property);
 

@@ -1,4 +1,4 @@
-﻿/* Copyright (c) 2017 Rick (rick 'at' gibbed 'dot' us)
+/* Copyright (c) 2017 Rick (rick 'at' gibbed 'dot' us)
  * 
  * This software is provided 'as-is', without any express or implied
  * warranty. In no event will the authors be held liable for any damages
@@ -60,103 +60,103 @@ namespace Gibbed.Frostbite3.Unbundling
                 switch (type)
                 {
                     case PatchType.Copy:
-                    {
-                        for (int i = 0; i < count; i++)
                         {
-                            var inputRead = CompressionHelper.DecompressBlock(input, inputBytes, work);
-                            output.Write(inputBytes, 0, inputRead);
+                            for (int i = 0; i < count; i++)
+                            {
+                                var inputRead = CompressionHelper.DecompressBlock(input, inputBytes, work);
+                                output.Write(inputBytes, 0, inputRead);
+                            }
+                            break;
                         }
-                        break;
-                    }
 
                     case PatchType.CompressedChange:
-                    {
-                        var inputRead = CompressionHelper.DecompressBlock(input, inputBytes, work);
-                        int o = 0;
-                        for (int i = 0; i < count; i++)
                         {
-                            var inputOffset = delta.ReadValueU16(endian);
-                            var inputSkipLength = delta.ReadValueU16(endian);
-                            var inputCopyLength = inputOffset - o;
-                            if (o + inputCopyLength > inputRead)
-                            {
-                                throw new EndOfStreamException();
-                            }
-                            output.Write(inputBytes, o, inputCopyLength);
-                            var deltaRead = CompressionHelper.DecompressBlock(delta, deltaBytes, work);
-                            output.Write(deltaBytes, 0, deltaRead);
-                            o = inputOffset + inputSkipLength;
-                        }
-                        output.Write(inputBytes, o, inputRead - o);
-                        break;
-                    }
-
-                    case PatchType.UncompressedChange:
-                    {
-                        var inputRead = CompressionHelper.DecompressBlock(input, inputBytes, work);
-                        var totalSize = 1 + delta.ReadValueU16(endian);
-                        var basePosition = output.Position;
-                        using (var temp = delta.ReadToMemoryStream(count))
-                        {
-                            temp.Position = 0;
+                            var inputRead = CompressionHelper.DecompressBlock(input, inputBytes, work);
                             int o = 0;
-                            while (temp.Position < temp.Length)
+                            for (int i = 0; i < count; i++)
                             {
-                                var inputOffset = temp.ReadValueU16(endian);
-                                var inputSkipLength = temp.ReadValueU8();
-                                var deltaCopyLength = temp.ReadValueU8();
-
+                                var inputOffset = delta.ReadValueU16(endian);
+                                var inputSkipLength = delta.ReadValueU16(endian);
                                 var inputCopyLength = inputOffset - o;
                                 if (o + inputCopyLength > inputRead)
                                 {
                                     throw new EndOfStreamException();
                                 }
                                 output.Write(inputBytes, o, inputCopyLength);
-
-                                if (deltaCopyLength > 0)
-                                {
-                                    var deltaRead = temp.Read(deltaBytes, 0, deltaCopyLength);
-                                    if (deltaRead != deltaCopyLength)
-                                    {
-                                        throw new EndOfStreamException();
-                                    }
-                                    output.Write(deltaBytes, 0, deltaCopyLength);
-                                }
-
+                                var deltaRead = CompressionHelper.DecompressBlock(delta, deltaBytes, work);
+                                output.Write(deltaBytes, 0, deltaRead);
                                 o = inputOffset + inputSkipLength;
                             }
                             output.Write(inputBytes, o, inputRead - o);
+                            break;
                         }
-                        if ((output.Position - basePosition) != totalSize)
+
+                    case PatchType.UncompressedChange:
                         {
-                            throw new InvalidOperationException();
+                            var inputRead = CompressionHelper.DecompressBlock(input, inputBytes, work);
+                            var totalSize = 1 + delta.ReadValueU16(endian);
+                            var basePosition = output.Position;
+                            using (var temp = delta.ReadToMemoryStream(count))
+                            {
+                                temp.Position = 0;
+                                int o = 0;
+                                while (temp.Position < temp.Length)
+                                {
+                                    var inputOffset = temp.ReadValueU16(endian);
+                                    var inputSkipLength = temp.ReadValueU8();
+                                    var deltaCopyLength = temp.ReadValueU8();
+
+                                    var inputCopyLength = inputOffset - o;
+                                    if (o + inputCopyLength > inputRead)
+                                    {
+                                        throw new EndOfStreamException();
+                                    }
+                                    output.Write(inputBytes, o, inputCopyLength);
+
+                                    if (deltaCopyLength > 0)
+                                    {
+                                        var deltaRead = temp.Read(deltaBytes, 0, deltaCopyLength);
+                                        if (deltaRead != deltaCopyLength)
+                                        {
+                                            throw new EndOfStreamException();
+                                        }
+                                        output.Write(deltaBytes, 0, deltaCopyLength);
+                                    }
+
+                                    o = inputOffset + inputSkipLength;
+                                }
+                                output.Write(inputBytes, o, inputRead - o);
+                            }
+                            if ((output.Position - basePosition) != totalSize)
+                            {
+                                throw new InvalidOperationException();
+                            }
+                            break;
                         }
-                        break;
-                    }
 
                     case PatchType.Add:
-                    {
-                        for (int i = 0; i < count; i++)
                         {
-                            var deltaRead = CompressionHelper.DecompressBlock(delta, deltaBytes, work);
-                            output.Write(deltaBytes, 0, deltaRead);
+                            for (int i = 0; i < count; i++)
+                            {
+                                var deltaRead = CompressionHelper.DecompressBlock(delta, deltaBytes, work);
+                                output.Write(deltaBytes, 0, deltaRead);
+                            }
+                            break;
                         }
-                        break;
-                    }
 
                     case PatchType.Remove:
-                    {
-                        for (int i = 0; i < count; i++)
                         {
-                            CompressionHelper.SkipBlock(input);
+                            for (int i = 0; i < count; i++)
+                            {
+                                CompressionHelper.SkipBlock(input);
+                            }
+                            break;
                         }
-                        break;
-                    }
 
                     default:
-                    {
-                        throw new NotImplementedException();
-                    }
+                        {
+                            throw new NotImplementedException();
+                        }
                 }
             }
 

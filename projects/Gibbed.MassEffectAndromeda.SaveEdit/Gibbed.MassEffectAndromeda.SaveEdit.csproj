@@ -1,329 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <TargetFramework>net10.0-windows10.0.17763.0</TargetFramework>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{264B26E7-899F-4D77-B2B2-D24F3E2C8C8D}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Gibbed.MassEffectAndromeda.SaveEdit</RootNamespace>
-    <AssemblyName>Gibbed.MassEffectAndromeda.SaveEdit</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <WarningLevel>4</WarningLevel>
-    <Utf8Output>true</Utf8Output>
-    <ExpressionBlendVersion>4.0.20525.0</ExpressionBlendVersion>
-    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
-    <RestorePackages>true</RestorePackages>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <PlatformTarget>x86</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <PlatformTarget>x86</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="Caliburn.Micro.Core, Version=5.0.0.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Caliburn.Micro.Core.5.0.258\lib\netstandard2.0\Caliburn.Micro.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Caliburn.Micro.Platform, Version=5.0.0.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Caliburn.Micro.5.0.258\lib\net462\Caliburn.Micro.Platform.dll</HintPath>
-    </Reference>
-    <Reference Include="Caliburn.Micro.Platform.Core, Version=5.0.0.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Caliburn.Micro.5.0.258\lib\net462\Caliburn.Micro.Platform.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.135\lib\net462\Microsoft.Xaml.Behaviors.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.13.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xaml">
-      <RequiredTargetFramework>4.0</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="WindowsBase" />
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
-    <Reference Include="Xceed.Wpf.AvalonDock, Version=5.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Extended.Wpf.Toolkit.5.0.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=5.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Extended.Wpf.Toolkit.5.0.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=5.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Extended.Wpf.Toolkit.5.0.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=5.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Extended.Wpf.Toolkit.5.0.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Wpf.Toolkit, Version=5.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Extended.Wpf.Toolkit.5.0.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <PropertyGroup>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <UseWPF>true</UseWPF>
+    <Configurations>Debug;Release;SaveEdit Packaging</Configurations>
     <ApplicationIcon>Resources\app.ico</ApplicationIcon>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup>
     <StartupObject>Gibbed.MassEffectAndromeda.SaveEdit.Startup</StartupObject>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'SaveEdit Packaging|x86'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x86\SaveEdit Packaging\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <CodeAnalysisLogFile>bin\Debug\Gibbed.MassEffectAndromeda.SaveEdit.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
-    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
-    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
-    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
-    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
-    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
-    <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'SaveEdit Packaging|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
     <OutputPath>..\..\bin_saveedit\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <CodeAnalysisLogFile>..\..\bin\Gibbed.MassEffectAndromeda.SaveEdit.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
-    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
-    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
-    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
-    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
-    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="PresentationFramework.Aero" />
-    <Reference Include="System" />
-    <Reference Include="System.ComponentModel.Composition">
-      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.ComponentModel.Composition.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Xml" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xaml">
-      <RequiredTargetFramework>4.0</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="WindowsBase" />
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
-  </ItemGroup>
-  <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Editor\Core\InventoryView.xaml.cs">
-      <DependentUpon>InventoryView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Editor\Core\InventoryViewModel.cs" />
-    <Compile Include="Editor\Items\GearItemView.xaml.cs">
-      <DependentUpon>GearItemView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Editor\Items\GearItemViewModel.cs" />
-    <Compile Include="Editor\Items\ItemView.xaml.cs">
-      <DependentUpon>ItemView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Editor\Items\ItemViewModel.cs" />
-    <Compile Include="Editor\Items\PowerItemView.xaml.cs">
-      <DependentUpon>PowerItemView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Editor\Items\PowerItemViewModel.cs" />
-    <Compile Include="Editor\Items\RangedWeaponItemViewModel.cs" />
-    <Compile Include="Editor\Items\RangedWeaponItemView.xaml.cs">
-      <DependentUpon>RangedWeaponItemView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Helpers\DelegateCommand.cs" />
-    <Compile Include="Helpers\EnumToBooleanConverter.cs" />
-    <Compile Include="Helpers\HyperlinkExtensions.cs" />
-    <Compile Include="Helpers\InputBindingTrigger.cs" />
-    <Compile Include="Helpers\ItemTypeHelpers.cs" />
-    <Compile Include="Helpers\ItemTypeOrder.cs" />
-    <Compile Include="Helpers\MyFileFilterCollection.cs" />
-    <Compile Include="Helpers\MyMessageBox.cs" />
-    <Compile Include="Helpers\ShortcutParser.cs" />
-    <Compile Include="SaveLoad.cs" />
-    <Compile Include="Startup.cs" />
-    <Compile Include="Editor\Core\AboutView.xaml.cs">
-      <DependentUpon>AboutView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Editor\Core\AboutViewModel.cs" />
-    <Compile Include="Helpers\ContainsToVisiblityConverter.cs" />
-    <Compile Include="Helpers\MyOpenFileResult.cs" />
-    <Compile Include="Helpers\MySaveFileResult.cs" />
-    <Compile Include="Helpers\NullToBooleanConverter.cs" />
-    <Compile Include="Helpers\MyComboBox.cs" />
-    <Compile Include="Helpers\PropertyProxy.cs" />
-    <Compile Include="ShellView.xaml.cs">
-      <DependentUpon>ShellView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Editor\Core\CustomizationView.xaml.cs">
-      <DependentUpon>CustomizationView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Editor\Core\CustomizationViewModel.cs" />
-    <Compile Include="Editor\Core\GeneralView.xaml.cs">
-      <DependentUpon>GeneralView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Editor\Core\GeneralViewModel.cs" />
-    <Compile Include="Editor\Core\PlotView.xaml.cs">
-      <DependentUpon>PlotView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Editor\Core\PlotViewModel.cs" />
-    <Compile Include="Editor\Squad\MemberView.xaml.cs">
-      <DependentUpon>MemberView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Editor\Squad\MemberViewModel.cs" />
-    <Compile Include="Editor\Core\SquadView.xaml.cs">
-      <DependentUpon>SquadView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Editor\Core\SquadViewModel.cs" />
-    <Compile Include="Version.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="AppBootstrapper.cs" />
-    <Compile Include="AppWindowManager.cs" />
-    <Compile Include="ShellViewModel.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <None Include="app.config">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="packages.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <AppDesigner Include="Properties\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="Editor\Core\AboutView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Editor\Core\InventoryView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Editor\Items\GearItemView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Editor\Items\ItemView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Editor\Items\PowerItemView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Editor\Items\RangedWeaponItemView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ShellView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Editor\Core\CustomizationView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Editor\Core\GeneralView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Editor\Core\PlotView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Editor\Squad\MemberView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Editor\Core\SquadView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\fugue\disk-black.png" />
     <Resource Include="Resources\fugue\document-binary.png" />
@@ -339,23 +28,24 @@
     <Resource Include="Resources\app.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Gibbed.MassEffectAndromeda.FileFormats\Gibbed.MassEffectAndromeda.FileFormats.csproj">
-      <Project>{93AACE29-A0ED-46A4-8D74-7A50B334AA73}</Project>
-      <Name>Gibbed.MassEffectAndromeda.FileFormats</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Gibbed.MassEffectAndromeda.GameInfo\Gibbed.MassEffectAndromeda.GameInfo.csproj">
-      <Project>{FE8DE5ED-25C8-4D80-8A13-ED1BCFDE1D95}</Project>
-      <Name>Gibbed.MassEffectAndromeda.GameInfo</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Gibbed.MassEffectAndromeda.SaveFormats\Gibbed.MassEffectAndromeda.SaveFormats.csproj">
-      <Project>{5CD4E640-4F3E-410B-AB08-DE629BE62AD3}</Project>
-      <Name>Gibbed.MassEffectAndromeda.SaveFormats</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\Gibbed.MassEffectAndromeda.FileFormats\Gibbed.MassEffectAndromeda.FileFormats.csproj" />
+    <ProjectReference Include="..\Gibbed.MassEffectAndromeda.GameInfo\Gibbed.MassEffectAndromeda.GameInfo.csproj" />
+    <ProjectReference Include="..\Gibbed.MassEffectAndromeda.SaveFormats\Gibbed.MassEffectAndromeda.SaveFormats.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\become_a_patron_button.png" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <PackageReference Include="Caliburn.Micro" Version="5.0.258" />
+    <PackageReference Include="Caliburn.Micro.Core" Version="5.0.258" />
+    <PackageReference Include="Extended.Wpf.Toolkit" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.135" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+    <PackageReference Include="System.ComponentModel.Composition" Version="10.0.3" />
+  </ItemGroup>
+  <ItemGroup Label="Compile items now included by globbing that were not in the original project file">
+    <Compile Remove="Helpers\MyClipboard.cs" />
+  </ItemGroup>
   <Target Name="AfterResolveReferences">
     <ItemGroup>
       <EmbeddedResource Include="@(ReferenceCopyLocalPaths)" Condition="'%(ReferenceCopyLocalPaths.Extension)' == '.dll'">
@@ -363,18 +53,4 @@
       </EmbeddedResource>
     </ItemGroup>
   </Target>
-  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
-  </Target>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

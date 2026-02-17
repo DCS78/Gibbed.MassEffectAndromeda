@@ -1,4 +1,4 @@
-﻿/* Copyright (c) 2017 Rick (rick 'at' gibbed 'dot' us)
+/* Copyright (c) 2017 Rick (rick 'at' gibbed 'dot' us)
  * 
  * This software is provided 'as-is', without any express or implied
  * warranty. In no event will the authors be held liable for any damages
@@ -20,12 +20,12 @@
  *    distribution.
  */
 
-using Gibbed.MassEffectAndromeda.FileFormats;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using Gibbed.MassEffectAndromeda.FileFormats;
+using Newtonsoft.Json;
 
 namespace Gibbed.MassEffectAndromeda.SaveFormats
 {
@@ -874,13 +874,13 @@ namespace Gibbed.MassEffectAndromeda.SaveFormats
         }
 
         public T GetAgent<T>()
-            where T: Agent
+            where T : Agent
         {
             return this._Agents.Values.OfType<T>().FirstOrDefault();
         }
 
         public T GetComponentContainerAgent<T>()
-            where T: IComponentContainerAgent
+            where T : IComponentContainerAgent
         {
             return this._ComponentContainerAgents.OfType<T>().FirstOrDefault();
         }

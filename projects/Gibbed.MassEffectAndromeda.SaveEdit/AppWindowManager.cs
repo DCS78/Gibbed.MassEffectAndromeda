@@ -1,4 +1,4 @@
-﻿/* Copyright (c) 2017 Rick (rick 'at' gibbed 'dot' us)
+/* Copyright (c) 2017 Rick (rick 'at' gibbed 'dot' us)
  * 
  * This software is provided 'as-is', without any express or implied
  * warranty. In no event will the authors be held liable for any damages
@@ -22,9 +22,12 @@
 
 using System;
 using System.Globalization;
+using System.Runtime.Versioning;
 using System.Windows;
 using System.Windows.Media.Imaging;
 using Caliburn.Micro;
+
+[assembly: SupportedOSPlatform("windows10.0")]
 
 namespace Gibbed.MassEffectAndromeda.SaveEdit
 {

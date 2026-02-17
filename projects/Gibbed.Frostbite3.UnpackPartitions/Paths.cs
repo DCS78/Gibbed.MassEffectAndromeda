@@ -1,4 +1,4 @@
-﻿/* Copyright (c) 2017 Rick (rick 'at' gibbed 'dot' us)
+/* Copyright (c) 2017 Rick (rick 'at' gibbed 'dot' us)
  * 
  * This software is provided 'as-is', without any express or implied
  * warranty. In no event will the authors be held liable for any damages
@@ -53,24 +53,24 @@ namespace Gibbed.Frostbite3.UnpackPartitions
             switch (Path.GetExtension(inputPath).ToLowerInvariant())
             {
                 case ".sb":
-                {
-                    var superbundlePath = inputPath;
-                    var tableOfContentsPath = Path.ChangeExtension(superbundlePath, ".toc");
-                    var dataPath = FindDataPath(superbundlePath);
-                    var outputBasePath = outputPath ?? Path.ChangeExtension(superbundlePath, null) + "_ebx_unpack";
-                    result = new Paths(dataPath, superbundlePath, tableOfContentsPath, outputBasePath);
-                    return true;
-                }
+                    {
+                        var superbundlePath = inputPath;
+                        var tableOfContentsPath = Path.ChangeExtension(superbundlePath, ".toc");
+                        var dataPath = FindDataPath(superbundlePath);
+                        var outputBasePath = outputPath ?? Path.ChangeExtension(superbundlePath, null) + "_ebx_unpack";
+                        result = new Paths(dataPath, superbundlePath, tableOfContentsPath, outputBasePath);
+                        return true;
+                    }
 
                 case ".toc":
-                {
-                    var tableOfContentsPath = inputPath;
-                    var superbundlePath = Path.ChangeExtension(tableOfContentsPath, ".sb");
-                    var dataPath = FindDataPath(superbundlePath);
-                    var outputBasePath = outputPath ?? Path.ChangeExtension(tableOfContentsPath, null) + "_ebx_unpack";
-                    result = new Paths(dataPath, superbundlePath, tableOfContentsPath, outputBasePath);
-                    return true;
-                }
+                    {
+                        var tableOfContentsPath = inputPath;
+                        var superbundlePath = Path.ChangeExtension(tableOfContentsPath, ".sb");
+                        var dataPath = FindDataPath(superbundlePath);
+                        var outputBasePath = outputPath ?? Path.ChangeExtension(tableOfContentsPath, null) + "_ebx_unpack";
+                        result = new Paths(dataPath, superbundlePath, tableOfContentsPath, outputBasePath);
+                        return true;
+                    }
             }
 
             result = default(Paths);

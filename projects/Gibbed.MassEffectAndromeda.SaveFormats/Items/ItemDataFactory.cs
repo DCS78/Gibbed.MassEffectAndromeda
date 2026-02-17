@@ -1,4 +1,4 @@
-﻿/* Copyright (c) 2017 Rick (rick 'at' gibbed 'dot' us)
+/* Copyright (c) 2017 Rick (rick 'at' gibbed 'dot' us)
  * 
  * This software is provided 'as-is', without any express or implied
  * warranty. In no event will the authors be held liable for any damages
@@ -40,28 +40,28 @@ namespace Gibbed.MassEffectAndromeda.SaveFormats.Items
                 case ItemType.MakoMod:
                 case ItemType.Plot:
                 case ItemType.PassiveSkill:
-                {
-                    return new ItemData();
-                }
+                    {
+                        return new ItemData();
+                    }
 
                 case ItemType.RangedWeapon:
-                {
-                    return new RangedWeaponItemData();
-                }
+                    {
+                        return new RangedWeaponItemData();
+                    }
 
                 case ItemType.CasualOutfit:
                 case ItemType.Gear:
                 case ItemType.GearPart:
                 case ItemType.MeleeWeapon:
                 case ItemType.WeaponPart:
-                {
-                    return new GearItemData();
-                }
+                    {
+                        return new GearItemData();
+                    }
 
                 case ItemType.Power:
-                {
-                    return new PowerItemData();
-                }
+                    {
+                        return new PowerItemData();
+                    }
             }
 
             throw new NotSupportedException();

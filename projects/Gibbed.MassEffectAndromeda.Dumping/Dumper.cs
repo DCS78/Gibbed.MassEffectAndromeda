@@ -1,4 +1,4 @@
-﻿/* Copyright (c) 2017 Rick (rick 'at' gibbed 'dot' us)
+/* Copyright (c) 2017 Rick (rick 'at' gibbed 'dot' us)
  * 
  * This software is provided 'as-is', without any express or implied
  * warranty. In no event will the authors be held liable for any damages
@@ -32,7 +32,7 @@ using PartitionReader = Gibbed.Frostbite3.Dynamic.PartitionReader;
 
 namespace Gibbed.MassEffectAndromeda.Dumping
 {
-    public class Dumper
+    public class Dumper(bool loadPartitionMap)
     {
         #region Logger
         // ReSharper disable InconsistentNaming
@@ -40,19 +40,13 @@ namespace Gibbed.MassEffectAndromeda.Dumping
         // ReSharper restore InconsistentNaming
         #endregion
 
-        private readonly bool _LoadPartitionMap;
-        private readonly List<string> _RequiredSuperbundleNames;
+        private readonly bool _LoadPartitionMap = loadPartitionMap;
+        private readonly List<string> _RequiredSuperbundleNames = [];
         private DataManager _DataManager;
-
-        public Dumper(bool loadPartitionMap)
-        {
-            this._LoadPartitionMap = loadPartitionMap;
-            this._RequiredSuperbundleNames = new List<string>();
-        }
 
         private static string GetExecutableName()
         {
-            return Path.GetFileName(System.Reflection.Assembly.GetEntryAssembly().CodeBase);
+            return Path.GetFileName(System.Reflection.Assembly.GetEntryAssembly().Location);
         }
 
         private static void IncreaseLogLevel(string arg, ref int level)
@@ -76,14 +70,11 @@ namespace Gibbed.MassEffectAndromeda.Dumping
             }
         }
 
-        public delegate void DumpDelegate(Dumper dumper, Dictionary<Guid, PartitionMap.PartitionInfo> partitionMap, string outputPath); 
+        public delegate void DumpDelegate(Dumper dumper, Dictionary<Guid, PartitionMap.PartitionInfo> partitionMap, string outputPath);
 
         public void Main(string[] args, string defaultOutputPath, DumpDelegate callback)
         {
-            if (callback == null)
-            {
-                throw new ArgumentNullException("callback");
-            }
+            ArgumentNullException.ThrowIfNull(callback);
 
             int logLevelOrdinal = 3;
             bool noPatch = false;
@@ -220,15 +211,13 @@ namespace Gibbed.MassEffectAndromeda.Dumping
                 return null;
             }
 
-            using (var data = new MemoryStream())
-            {
-                dataManager.LoadData(info, data);
-                data.Position = 0;
+            using var data = new MemoryStream();
+            dataManager.LoadData(info, data);
+            data.Position = 0;
 
-                var partition = new PartitionFile();
-                partition.Deserialize(data);
-                return new PartitionReader(partition, enumTypes);
-            }
+            var partition = new PartitionFile();
+            partition.Deserialize(data);
+            return new PartitionReader(partition, enumTypes);
         }
     }
 }

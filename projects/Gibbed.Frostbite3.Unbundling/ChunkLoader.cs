@@ -1,4 +1,4 @@
-﻿/* Copyright (c) 2017 Rick (rick 'at' gibbed 'dot' us)
+/* Copyright (c) 2017 Rick (rick 'at' gibbed 'dot' us)
  * 
  * This software is provided 'as-is', without any express or implied
  * warranty. In no event will the authors be held liable for any damages
@@ -139,7 +139,6 @@ namespace Gibbed.Frostbite3.Unbundling
                     null,
                     0,
                     MemoryMappedFileAccess.Read,
-                    null,
                     HandleInheritability.None,
                     false);
             }

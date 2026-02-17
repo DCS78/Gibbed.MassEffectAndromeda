@@ -1,4 +1,4 @@
-﻿/* Copyright (c) 2017 Rick (rick 'at' gibbed 'dot' us)
+/* Copyright (c) 2017 Rick (rick 'at' gibbed 'dot' us)
  * 
  * This software is provided 'as-is', without any express or implied
  * warranty. In no event will the authors be held liable for any damages
@@ -106,106 +106,106 @@ namespace Gibbed.Frostbite3.ConvertDbObject
             switch (tag.Type)
             {
                 case ValueType.Array:
-                {
-                    ConvertArray(input, tag, writer);
-                    break;
-                }
+                    {
+                        ConvertArray(input, tag, writer);
+                        break;
+                    }
 
                 case ValueType.Object:
-                {
-                    ConvertDictionary(input, tag, writer);
-                    break;
-                }
+                    {
+                        ConvertDictionary(input, tag, writer);
+                        break;
+                    }
 
                 case ValueType.Bool:
-                {
-                    writer.WriteValue(input.ReadValueU8() != 0);
-                    break;
-                }
+                    {
+                        writer.WriteValue(input.ReadValueU8() != 0);
+                        break;
+                    }
 
                 case ValueType.String:
-                {
-                    writer.WriteValue(ReadString(input, tag));
-                    break;
-                }
+                    {
+                        writer.WriteValue(ReadString(input, tag));
+                        break;
+                    }
 
                 case ValueType.Int32:
-                {
-                    writer.WriteValue(input.ReadValueS32(Endian.Little));
-                    break;
-                }
+                    {
+                        writer.WriteValue(input.ReadValueS32(Endian.Little));
+                        break;
+                    }
 
                 case ValueType.Int64:
-                {
-                    writer.WriteValue(input.ReadValueS64(Endian.Little));
-                    break;
-                }
+                    {
+                        writer.WriteValue(input.ReadValueS64(Endian.Little));
+                        break;
+                    }
 
                 case ValueType.Float64:
-                {
-                    writer.WriteValue(input.ReadValueF64(Endian.Little));
-                    break;
-                }
+                    {
+                        writer.WriteValue(input.ReadValueF64(Endian.Little));
+                        break;
+                    }
 
                 case ValueType.Guid:
-                {
-                    writer.WriteValue(input.ReadValueGuid(Endian.Big));
-                    break;
-                }
+                    {
+                        writer.WriteValue(input.ReadValueGuid(Endian.Big));
+                        break;
+                    }
 
                 case ValueType.SHA1:
-                {
-                    var bytes = input.ReadBytes(20);
-                    writer.WriteStartObject();
-                    var oldFormatting = writer.Formatting;
-                    writer.Formatting = Formatting.None;
-                    writer.WritePropertyName("type");
-                    writer.WriteValue("sha1");
-                    writer.WritePropertyName("value");
-                    writer.WriteValue(BitConverter.ToString(bytes).Replace("-", "").ToLowerInvariant());
-                    writer.WriteEndObject();
-                    writer.Formatting = oldFormatting;
-                    break;
-                }
+                    {
+                        var bytes = input.ReadBytes(20);
+                        writer.WriteStartObject();
+                        var oldFormatting = writer.Formatting;
+                        writer.Formatting = Formatting.None;
+                        writer.WritePropertyName("type");
+                        writer.WriteValue("sha1");
+                        writer.WritePropertyName("value");
+                        writer.WriteValue(BitConverter.ToString(bytes).Replace("-", "").ToLowerInvariant());
+                        writer.WriteEndObject();
+                        writer.Formatting = oldFormatting;
+                        break;
+                    }
 
                 case ValueType.Bytes:
-                {
-                    var length = input.ReadPackedValueUInt32();
-                    var basePosition = input.Position;
-                    var endPosition = basePosition + length;
-                    if (endPosition > input.Length)
                     {
-                        throw new EndOfStreamException();
+                        var length = input.ReadPackedValueUInt32();
+                        var basePosition = input.Position;
+                        var endPosition = basePosition + length;
+                        if (endPosition > input.Length)
+                        {
+                            throw new EndOfStreamException();
+                        }
+
+                        if (length > int.MaxValue)
+                        {
+                            throw new FormatException();
+                        }
+
+                        var bytes = input.ReadBytes((int)length);
+
+                        if (input.Position != endPosition)
+                        {
+                            throw new FormatException();
+                        }
+
+                        writer.WriteStartObject();
+                        var oldFormatting = writer.Formatting;
+                        writer.Formatting = Formatting.None;
+                        writer.WritePropertyName("type");
+                        writer.WriteValue("bytes");
+                        writer.WritePropertyName("value");
+                        writer.WriteValue(BitConverter.ToString(bytes).Replace("-", "").ToLowerInvariant());
+                        writer.WriteEndObject();
+                        writer.Formatting = oldFormatting;
+                        break;
                     }
-
-                    if (length > int.MaxValue)
-                    {
-                        throw new FormatException();
-                    }
-
-                    var bytes = input.ReadBytes((int)length);
-
-                    if (input.Position != endPosition)
-                    {
-                        throw new FormatException();
-                    }
-
-                    writer.WriteStartObject();
-                    var oldFormatting = writer.Formatting;
-                    writer.Formatting = Formatting.None;
-                    writer.WritePropertyName("type");
-                    writer.WriteValue("bytes");
-                    writer.WritePropertyName("value");
-                    writer.WriteValue(BitConverter.ToString(bytes).Replace("-", "").ToLowerInvariant());
-                    writer.WriteEndObject();
-                    writer.Formatting = oldFormatting;
-                    break;
-                }
 
                 default:
-                {
-                    throw new NotSupportedException();
-                }
+                    {
+                        throw new NotSupportedException();
+                    }
             }
         }
 

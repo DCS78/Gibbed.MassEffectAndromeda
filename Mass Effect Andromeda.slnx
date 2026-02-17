@@ -1,0 +1,182 @@
+<Solution>
+  <Configurations>
+    <BuildType Name="Debug" />
+    <BuildType Name="Release" />
+    <BuildType Name="SaveEdit Packaging" />
+    <Platform Name="Any CPU" />
+    <Platform Name="Mixed Platforms" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/Datamining/">
+    <Project Path="projects/Gibbed.MassEffectAndromeda.Dumping/Gibbed.MassEffectAndromeda.Dumping.csproj">
+      <BuildType Solution="SaveEdit Packaging|Any CPU" Project="Release" />
+      <BuildType Solution="SaveEdit Packaging|Mixed Platforms" Project="Debug" />
+      <BuildType Solution="SaveEdit Packaging|x86" Project="Release" />
+      <Build Solution="*|x86" Project="false" />
+      <Build Solution="SaveEdit Packaging|Mixed Platforms" Project="false" />
+    </Project>
+    <Project Path="projects/Gibbed.MassEffectAndromeda.DumpItemTypes/Gibbed.MassEffectAndromeda.DumpItemTypes.csproj">
+      <BuildType Solution="SaveEdit Packaging|Any CPU" Project="Release" />
+      <BuildType Solution="SaveEdit Packaging|Mixed Platforms" Project="Debug" />
+      <BuildType Solution="SaveEdit Packaging|x86" Project="Release" />
+      <Platform Project="x86" />
+      <Build Solution="Release|Any CPU" Project="false" />
+      <Build Solution="SaveEdit Packaging|Any CPU" Project="false" />
+      <Build Solution="SaveEdit Packaging|Mixed Platforms" Project="false" />
+    </Project>
+    <Project Path="projects/Gibbed.MassEffectAndromeda.DumpPartyMembers/Gibbed.MassEffectAndromeda.DumpPartyMembers.csproj">
+      <BuildType Solution="SaveEdit Packaging|Any CPU" Project="Release" />
+      <BuildType Solution="SaveEdit Packaging|Mixed Platforms" Project="Debug" />
+      <BuildType Solution="SaveEdit Packaging|x86" Project="Release" />
+      <Platform Project="x86" />
+      <Build Solution="Release|Any CPU" Project="false" />
+      <Build Solution="SaveEdit Packaging|Any CPU" Project="false" />
+      <Build Solution="SaveEdit Packaging|Mixed Platforms" Project="false" />
+    </Project>
+    <Project Path="projects/Gibbed.MassEffectAndromeda.DumpPlotFlags/Gibbed.MassEffectAndromeda.DumpPlotFlags.csproj">
+      <BuildType Solution="SaveEdit Packaging|Any CPU" Project="Release" />
+      <BuildType Solution="SaveEdit Packaging|Mixed Platforms" Project="Debug" />
+      <BuildType Solution="SaveEdit Packaging|x86" Project="Release" />
+      <Platform Project="x86" />
+      <Build Solution="Release|Any CPU" Project="false" />
+      <Build Solution="SaveEdit Packaging|Any CPU" Project="false" />
+      <Build Solution="SaveEdit Packaging|Mixed Platforms" Project="false" />
+    </Project>
+  </Folder>
+  <Folder Name="/Formats/">
+    <Project Path="projects/Gibbed.MassEffectAndromeda.FileFormats/Gibbed.MassEffectAndromeda.FileFormats.csproj">
+      <BuildType Solution="SaveEdit Packaging|Any CPU" Project="Release" />
+      <BuildType Solution="SaveEdit Packaging|Mixed Platforms" Project="Debug" />
+      <BuildType Solution="SaveEdit Packaging|x86" Project="Release" />
+      <Build Solution="*|x86" Project="false" />
+    </Project>
+    <Project Path="projects/Gibbed.MassEffectAndromeda.GameInfo/Gibbed.MassEffectAndromeda.GameInfo.csproj">
+      <BuildType Solution="SaveEdit Packaging|Any CPU" Project="Release" />
+      <BuildType Solution="SaveEdit Packaging|Mixed Platforms" Project="Debug" />
+      <BuildType Solution="SaveEdit Packaging|x86" Project="Release" />
+      <Build Solution="*|x86" Project="false" />
+    </Project>
+    <Project Path="projects/Gibbed.MassEffectAndromeda.SaveFormats/Gibbed.MassEffectAndromeda.SaveFormats.csproj">
+      <BuildType Solution="SaveEdit Packaging|Any CPU" Project="Release" />
+      <BuildType Solution="SaveEdit Packaging|Mixed Platforms" Project="Debug" />
+      <BuildType Solution="SaveEdit Packaging|x86" Project="Release" />
+      <Build Solution="*|x86" Project="false" />
+    </Project>
+  </Folder>
+  <Folder Name="/Frostbite3/" />
+  <Folder Name="/Frostbite3/Common/">
+    <Project Path="projects/Gibbed.Frostbite3.Common/Gibbed.Frostbite3.Common.csproj">
+      <BuildType Solution="SaveEdit Packaging|Any CPU" Project="Release" />
+      <BuildType Solution="SaveEdit Packaging|Mixed Platforms" Project="Debug" />
+      <BuildType Solution="SaveEdit Packaging|x86" Project="Release" />
+      <Build Solution="*|x86" Project="false" />
+    </Project>
+    <Project Path="projects/Gibbed.Frostbite3.Unbundling/Gibbed.Frostbite3.Unbundling.csproj">
+      <BuildType Solution="SaveEdit Packaging|Any CPU" Project="Release" />
+      <BuildType Solution="SaveEdit Packaging|Mixed Platforms" Project="Debug" />
+      <BuildType Solution="SaveEdit Packaging|x86" Project="Release" />
+      <Build Solution="*|x86" Project="false" />
+      <Build Solution="SaveEdit Packaging|Mixed Platforms" Project="false" />
+    </Project>
+    <Project Path="projects/Gibbed.Frostbite3.Zstd/Gibbed.Frostbite3.Zstd.csproj">
+      <BuildType Solution="SaveEdit Packaging|Any CPU" Project="Release" />
+      <BuildType Solution="SaveEdit Packaging|Mixed Platforms" Project="Debug" />
+      <BuildType Solution="SaveEdit Packaging|x86" Project="Release" />
+      <Build Solution="*|x86" Project="false" />
+      <Build Solution="SaveEdit Packaging|Mixed Platforms" Project="false" />
+    </Project>
+  </Folder>
+  <Folder Name="/Frostbite3/Formats/">
+    <Project Path="projects/Gibbed.Frostbite3.Dynamic/Gibbed.Frostbite3.Dynamic.csproj">
+      <BuildType Solution="SaveEdit Packaging|Any CPU" Project="Release" />
+      <BuildType Solution="SaveEdit Packaging|Mixed Platforms" Project="Debug" />
+      <BuildType Solution="SaveEdit Packaging|x86" Project="Release" />
+      <Build Solution="*|x86" Project="false" />
+      <Build Solution="SaveEdit Packaging|Mixed Platforms" Project="false" />
+    </Project>
+    <Project Path="projects/Gibbed.Frostbite3.ResourceFormats/Gibbed.Frostbite3.ResourceFormats.csproj">
+      <BuildType Solution="SaveEdit Packaging|Any CPU" Project="Release" />
+      <BuildType Solution="SaveEdit Packaging|Mixed Platforms" Project="Debug" />
+      <BuildType Solution="SaveEdit Packaging|x86" Project="Release" />
+      <Build Solution="*|x86" Project="false" />
+      <Build Solution="SaveEdit Packaging|Mixed Platforms" Project="false" />
+    </Project>
+    <Project Path="projects/Gibbed.Frostbite3.VfsFormats/Gibbed.Frostbite3.VfsFormats.csproj">
+      <BuildType Solution="SaveEdit Packaging|Any CPU" Project="Release" />
+      <BuildType Solution="SaveEdit Packaging|Mixed Platforms" Project="Debug" />
+      <BuildType Solution="SaveEdit Packaging|x86" Project="Release" />
+      <Build Solution="*|x86" Project="false" />
+      <Build Solution="SaveEdit Packaging|Mixed Platforms" Project="false" />
+    </Project>
+  </Folder>
+  <Folder Name="/Frostbite3/Tools/">
+    <Project Path="projects/Gibbed.Frostbite3.ConvertDbObject/Gibbed.Frostbite3.ConvertDbObject.csproj">
+      <BuildType Solution="SaveEdit Packaging|Any CPU" Project="Release" />
+      <BuildType Solution="SaveEdit Packaging|Mixed Platforms" Project="Debug" />
+      <BuildType Solution="SaveEdit Packaging|x86" Project="Release" />
+      <Platform Project="x86" />
+      <Build Solution="Release|Any CPU" Project="false" />
+      <Build Solution="SaveEdit Packaging|Any CPU" Project="false" />
+      <Build Solution="SaveEdit Packaging|Mixed Platforms" Project="false" />
+    </Project>
+    <Project Path="projects/Gibbed.Frostbite3.GeneratePartitionMap/Gibbed.Frostbite3.GeneratePartitionMap.csproj">
+      <BuildType Solution="SaveEdit Packaging|Any CPU" Project="Release" />
+      <BuildType Solution="SaveEdit Packaging|Mixed Platforms" Project="Debug" />
+      <BuildType Solution="SaveEdit Packaging|x86" Project="Release" />
+      <Platform Project="x86" />
+      <Build Solution="Release|Any CPU" Project="false" />
+      <Build Solution="SaveEdit Packaging|Any CPU" Project="false" />
+      <Build Solution="SaveEdit Packaging|Mixed Platforms" Project="false" />
+    </Project>
+    <Project Path="projects/Gibbed.Frostbite3.UnpackInitFS/Gibbed.Frostbite3.UnpackInitFS.csproj">
+      <BuildType Solution="SaveEdit Packaging|Any CPU" Project="Release" />
+      <BuildType Solution="SaveEdit Packaging|Mixed Platforms" Project="Debug" />
+      <BuildType Solution="SaveEdit Packaging|x86" Project="Release" />
+      <Platform Project="x86" />
+      <Build Solution="Release|Any CPU" Project="false" />
+      <Build Solution="SaveEdit Packaging|Any CPU" Project="false" />
+      <Build Solution="SaveEdit Packaging|Mixed Platforms" Project="false" />
+    </Project>
+    <Project Path="projects/Gibbed.Frostbite3.UnpackPartitions/Gibbed.Frostbite3.UnpackPartitions.csproj">
+      <BuildType Solution="SaveEdit Packaging|Any CPU" Project="Release" />
+      <BuildType Solution="SaveEdit Packaging|Mixed Platforms" Project="Debug" />
+      <BuildType Solution="SaveEdit Packaging|x86" Project="Release" />
+      <Platform Project="x86" />
+      <Build Solution="Release|Any CPU" Project="false" />
+      <Build Solution="SaveEdit Packaging|Any CPU" Project="false" />
+      <Build Solution="SaveEdit Packaging|Mixed Platforms" Project="false" />
+    </Project>
+    <Project Path="projects/Gibbed.Frostbite3.UnpackResources/Gibbed.Frostbite3.UnpackResources.csproj">
+      <BuildType Solution="SaveEdit Packaging|Any CPU" Project="Release" />
+      <BuildType Solution="SaveEdit Packaging|Mixed Platforms" Project="Debug" />
+      <BuildType Solution="SaveEdit Packaging|x86" Project="Release" />
+      <Platform Project="x86" />
+      <Build Solution="Release|Any CPU" Project="false" />
+      <Build Solution="SaveEdit Packaging|Any CPU" Project="false" />
+      <Build Solution="SaveEdit Packaging|Mixed Platforms" Project="false" />
+    </Project>
+  </Folder>
+  <Project Path="projects/Gibbed.IO/Gibbed.IO.csproj">
+    <BuildType Solution="SaveEdit Packaging|Any CPU" Project="Release" />
+    <BuildType Solution="SaveEdit Packaging|Mixed Platforms" Project="Debug" />
+    <BuildType Solution="SaveEdit Packaging|x86" Project="Release" />
+    <Build Solution="*|x86" Project="false" />
+  </Project>
+  <Project Path="projects/Gibbed.MassEffectAndromeda.SaveEdit/Gibbed.MassEffectAndromeda.SaveEdit.csproj">
+    <Platform Solution="*|x86" Project="x86" />
+  </Project>
+  <Project Path="projects/Gibbed.PortableExecutable/Gibbed.PortableExecutable.csproj">
+    <BuildType Solution="SaveEdit Packaging|Any CPU" Project="Release" />
+    <BuildType Solution="SaveEdit Packaging|Mixed Platforms" Project="Debug" />
+    <BuildType Solution="SaveEdit Packaging|x86" Project="Release" />
+    <Build Solution="*|x86" Project="false" />
+    <Build Solution="SaveEdit Packaging|Mixed Platforms" Project="false" />
+  </Project>
+  <Project Path="projects/NDesk.Options/NDesk.Options.csproj">
+    <BuildType Solution="SaveEdit Packaging|Any CPU" Project="Release" />
+    <BuildType Solution="SaveEdit Packaging|Mixed Platforms" Project="Debug" />
+    <BuildType Solution="SaveEdit Packaging|x86" Project="Release" />
+    <Build Solution="*|x86" Project="false" />
+    <Build Solution="SaveEdit Packaging|Mixed Platforms" Project="false" />
+  </Project>
+</Solution>

@@ -1,4 +1,4 @@
-﻿/* Copyright (c) 2017 Rick (rick 'at' gibbed 'dot' us)
+/* Copyright (c) 2017 Rick (rick 'at' gibbed 'dot' us)
  * 
  * This software is provided 'as-is', without any express or implied
  * warranty. In no event will the authors be held liable for any damages
@@ -305,153 +305,153 @@ namespace Gibbed.Frostbite3.Dynamic
             switch (flags.DataType)
             {
                 case Partition.DataType.Value:
-                {
-                    var type = this._FlattenedTypes[typeIndex];
-                    return new PartitionInstance(this, Guid.Empty, this._Data.Position, type).ToObject();
-                }
+                    {
+                        var type = this._FlattenedTypes[typeIndex];
+                        return new PartitionInstance(this, Guid.Empty, this._Data.Position, type).ToObject();
+                    }
 
                 case Partition.DataType.Class:
-                {
-                    var value = this._Data.ReadValueU32(endian);
-                    if (value == 0)
                     {
-                        return null;
+                        var value = this._Data.ReadValueU32(endian);
+                        if (value == 0)
+                        {
+                            return null;
+                        }
+                        if ((value & 0x80000000u) != 0)
+                        {
+                            value &= ~0x80000000u;
+                            return this._Partition.ImportEntries[(int)value];
+                        }
+                        return (this._Instances[(int)value - 1].ToObject());
                     }
-                    if ((value & 0x80000000u) != 0)
-                    {
-                        value &= ~0x80000000u;
-                        return this._Partition.ImportEntries[(int)value];
-                    }
-                    return (this._Instances[(int)value - 1].ToObject());
-                }
 
                 case Partition.DataType.List:
-                {
-                    var arrayIndex = this._Data.ReadValueU32(endian);
-                    if (arrayIndex == 0xFFFFFFFFu)
                     {
-                        return null;
+                        var arrayIndex = this._Data.ReadValueU32(endian);
+                        if (arrayIndex == 0xFFFFFFFFu)
+                        {
+                            return null;
+                        }
+                        if (arrayIndex >= this._Partition.ArrayEntries.Count)
+                        {
+                            throw new ArgumentOutOfRangeException("array index " + arrayIndex + " is invalid");
+                        }
+                        var arrayEntry = this._Partition.ArrayEntries[(int)arrayIndex];
+                        var arrayTypeDefinition = this._Partition.TypeDefinitionEntries[arrayEntry.TypeIndex];
+                        if (arrayTypeDefinition.DataSize != 4)
+                        {
+                            throw new InvalidOperationException("array should have a size of 4");
+                        }
+                        if (arrayTypeDefinition.FieldCount != 1)
+                        {
+                            throw new InvalidOperationException("array should only have one member");
+                        }
+                        var arrayMemberField = this._Partition.FieldDefinitionEntries[arrayTypeDefinition.FieldStartIndex];
+                        var arrayMemberSize = this.GetFieldDefinitionSize(arrayTypeDefinition.FieldStartIndex);
+                        var items = new dynamic[arrayEntry.ItemCount];
+                        for (int i = 0; i < arrayEntry.ItemCount; i++)
+                        {
+                            this._Data.Position = this._Partition.StringTableSize +
+                                                  this._Partition.ArrayOffset +
+                                                  arrayEntry.DataOffset + (i * arrayMemberSize);
+                            items[i] = this.ReadData(arrayMemberField.TypeIndex, arrayMemberField.Flags);
+                        }
+                        return items;
                     }
-                    if (arrayIndex >= this._Partition.ArrayEntries.Count)
-                    {
-                        throw new ArgumentOutOfRangeException("array index " + arrayIndex + " is invalid");
-                    }
-                    var arrayEntry = this._Partition.ArrayEntries[(int)arrayIndex];
-                    var arrayTypeDefinition = this._Partition.TypeDefinitionEntries[arrayEntry.TypeIndex];
-                    if (arrayTypeDefinition.DataSize != 4)
-                    {
-                        throw new InvalidOperationException("array should have a size of 4");
-                    }
-                    if (arrayTypeDefinition.FieldCount != 1)
-                    {
-                        throw new InvalidOperationException("array should only have one member");
-                    }
-                    var arrayMemberField = this._Partition.FieldDefinitionEntries[arrayTypeDefinition.FieldStartIndex];
-                    var arrayMemberSize = this.GetFieldDefinitionSize(arrayTypeDefinition.FieldStartIndex);
-                    var items = new dynamic[arrayEntry.ItemCount];
-                    for (int i = 0; i < arrayEntry.ItemCount; i++)
-                    {
-                        this._Data.Position = this._Partition.StringTableSize +
-                                              this._Partition.ArrayOffset +
-                                              arrayEntry.DataOffset + (i * arrayMemberSize);
-                        items[i] = this.ReadData(arrayMemberField.TypeIndex, arrayMemberField.Flags);
-                    }
-                    return items;
-                }
 
                 case Partition.DataType.String2:
-                {
-                    var stringOffset = this._Data.ReadValueU32(endian);
-                    if (stringOffset == 0xFFFFFFFFu)
                     {
-                        return null;
+                        var stringOffset = this._Data.ReadValueU32(endian);
+                        if (stringOffset == 0xFFFFFFFFu)
+                        {
+                            return null;
+                        }
+                        this._Data.Position = stringOffset;
+                        return this._Data.ReadStringZ(Encoding.UTF8);
                     }
-                    this._Data.Position = stringOffset;
-                    return this._Data.ReadStringZ(Encoding.UTF8);
-                }
 
                 case Partition.DataType.Enum:
-                {
-                    var typeDefinition = this._Partition.TypeDefinitionEntries[typeIndex];
-                    object value;
-                    switch (typeDefinition.DataSize)
                     {
-                        case 4:
+                        var typeDefinition = this._Partition.TypeDefinitionEntries[typeIndex];
+                        object value;
+                        switch (typeDefinition.DataSize)
                         {
-                            value = this._Data.ReadValueU32(endian);
-                            break;
+                            case 4:
+                                {
+                                    value = this._Data.ReadValueU32(endian);
+                                    break;
+                                }
+
+                            default:
+                                {
+                                    throw new NotSupportedException("unsupported enum size");
+                                }
                         }
 
-                        default:
+                        Type enumType;
+                        if (this._EnumTypes == null || this._EnumTypes.TryGetValue(typeIndex, out enumType) == false)
                         {
-                            throw new NotSupportedException("unsupported enum size");
+                            return value;
                         }
-                    }
+                        return Enum.ToObject(enumType, Convert.ToUInt32(value));
 
-                    Type enumType;
-                    if (this._EnumTypes == null || this._EnumTypes.TryGetValue(typeIndex, out enumType) == false)
-                    {
-                        return value;
-                    }
-                    return Enum.ToObject(enumType, Convert.ToUInt32(value));
-
-                    /*
-                    for (int i = typeDefinition.FieldStartIndex, o = 0; o < typeDefinition.FieldCount; i++, o++)
-                    {
-                        var fieldDefinition = this._Partition.FieldDefinitionEntries[i];
-                        if (fieldDefinition.DataOffset == value)
+                        /*
+                        for (int i = typeDefinition.FieldStartIndex, o = 0; o < typeDefinition.FieldCount; i++, o++)
                         {
-                            return fieldDefinition.Name;
+                            var fieldDefinition = this._Partition.FieldDefinitionEntries[i];
+                            if (fieldDefinition.DataOffset == value)
+                            {
+                                return fieldDefinition.Name;
+                            }
                         }
+                        return null;
+                        */
                     }
-                    return null;
-                    */
-                }
 
                 case Partition.DataType.Boolean:
-                {
-                    return this._Data.ReadValueB8();
-                }
+                    {
+                        return this._Data.ReadValueB8();
+                    }
 
                 case Partition.DataType.Int8:
-                {
-                    return this._Data.ReadValueS8();
-                }
+                    {
+                        return this._Data.ReadValueS8();
+                    }
 
                 case Partition.DataType.UInt8:
-                {
-                    return this._Data.ReadValueU8();
-                }
+                    {
+                        return this._Data.ReadValueU8();
+                    }
 
                 case Partition.DataType.Int16:
-                {
-                    return this._Data.ReadValueS16(endian);
-                }
+                    {
+                        return this._Data.ReadValueS16(endian);
+                    }
 
                 case Partition.DataType.UInt16:
-                {
-                    return this._Data.ReadValueU16(endian);
-                }
+                    {
+                        return this._Data.ReadValueU16(endian);
+                    }
 
                 case Partition.DataType.Int32:
-                {
-                    return this._Data.ReadValueS32(endian);
-                }
+                    {
+                        return this._Data.ReadValueS32(endian);
+                    }
 
                 case Partition.DataType.UInt32:
-                {
-                    return this._Data.ReadValueU32(endian);
-                }
+                    {
+                        return this._Data.ReadValueU32(endian);
+                    }
 
                 case Partition.DataType.Float32:
-                {
-                    return this._Data.ReadValueF32(endian);
-                }
+                    {
+                        return this._Data.ReadValueF32(endian);
+                    }
 
                 case Partition.DataType.Guid:
-                {
-                    return this._Data.ReadValueGuid(endian);
-                }
+                    {
+                        return this._Data.ReadValueGuid(endian);
+                    }
             }
 
             throw new NotSupportedException("unsupported data type " + flags.DataType);
@@ -465,52 +465,52 @@ namespace Gibbed.Frostbite3.Dynamic
                 case Partition.DataType.Boolean:
                 case Partition.DataType.Int8:
                 case Partition.DataType.UInt8:
-                {
-                    return 1;
-                }
+                    {
+                        return 1;
+                    }
 
                 case Partition.DataType.Int16:
                 case Partition.DataType.UInt16:
-                {
-                    return 2;
-                }
+                    {
+                        return 2;
+                    }
 
                 case Partition.DataType.Int32:
                 case Partition.DataType.UInt32:
                 case Partition.DataType.Float32:
-                {
-                    return 4;
-                }
+                    {
+                        return 4;
+                    }
 
                 case Partition.DataType.String2:
-                {
-                    return 4;
-                }
+                    {
+                        return 4;
+                    }
 
                 case Partition.DataType.Class:
-                {
-                    return 4;
-                }
+                    {
+                        return 4;
+                    }
 
                 case Partition.DataType.Value:
-                {
-                    return this._Partition.TypeDefinitionEntries[fieldDefinition.TypeIndex].DataSize;
-                }
+                    {
+                        return this._Partition.TypeDefinitionEntries[fieldDefinition.TypeIndex].DataSize;
+                    }
 
                 case Partition.DataType.Enum:
-                {
-                    return this._Partition.TypeDefinitionEntries[fieldDefinition.TypeIndex].DataSize;
-                }
+                    {
+                        return this._Partition.TypeDefinitionEntries[fieldDefinition.TypeIndex].DataSize;
+                    }
 
                 case Partition.DataType.List:
-                {
-                    return 4;
-                }
+                    {
+                        return 4;
+                    }
 
                 case Partition.DataType.Guid:
-                {
-                    return 16;
-                }
+                    {
+                        return 16;
+                    }
             }
 
             throw new NotSupportedException("unsupported data type for get size");

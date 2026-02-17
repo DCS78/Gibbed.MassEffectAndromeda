@@ -1,4 +1,4 @@
-﻿/* Copyright (c) 2016 Rick (rick 'at' gibbed 'dot' us)
+/* Copyright (c) 2016 Rick (rick 'at' gibbed 'dot' us)
  * 
  * This software is provided 'as-is', without any express or implied
  * warranty. In no event will the authors be held liable for any damages
@@ -65,7 +65,7 @@ namespace Gibbed.MassEffectAndromeda.SaveEdit
                 try
                 {
                     var block = new byte[stream.Length];
-                    stream.Read(block, 0, block.Length);
+                    stream.ReadExactly(block, 0, block.Length);
 
                     assembly = Assembly.Load(block);
                     if (assembly == null)

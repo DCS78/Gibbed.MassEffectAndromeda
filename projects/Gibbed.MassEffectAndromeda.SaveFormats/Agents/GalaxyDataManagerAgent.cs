@@ -1,4 +1,4 @@
-﻿/* Copyright (c) 2017 Rick (rick 'at' gibbed 'dot' us)
+/* Copyright (c) 2017 Rick (rick 'at' gibbed 'dot' us)
  * 
  * This software is provided 'as-is', without any express or implied
  * warranty. In no event will the authors be held liable for any damages
@@ -105,10 +105,10 @@ namespace Gibbed.MassEffectAndromeda.SaveFormats.Agents
             base.Write2(writer);
 
             writer.PushFrameLength(24);
-                writer.PushFrameLength(24);
-                writer.WriteGuid(this._CurrentSystem);
-                writer.WriteGuid(this._CurrentDestination);
-                writer.PopFrameLength();
+            writer.PushFrameLength(24);
+            writer.WriteGuid(this._CurrentSystem);
+            writer.WriteGuid(this._CurrentDestination);
+            writer.PopFrameLength();
             this._Unknown3.Write(writer);
             this._Unknown4.Write(writer);
             writer.PopFrameLength();

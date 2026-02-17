@@ -1,4 +1,4 @@
-﻿/* Copyright (c) 2017 Rick (rick 'at' gibbed 'dot' us)
+/* Copyright (c) 2017 Rick (rick 'at' gibbed 'dot' us)
  * 
  * This software is provided 'as-is', without any express or implied
  * warranty. In no event will the authors be held liable for any damages
@@ -58,7 +58,7 @@ namespace Gibbed.Frostbite3.VfsFormats.FileLayers
             input.Seek(288, SeekOrigin.Current);
             var key = input.ReadBytes(257);
             var padding = input.ReadBytes(3);
-            
+
             if (padding.Any(b => b != 0) == true)
             {
                 throw new FormatException();

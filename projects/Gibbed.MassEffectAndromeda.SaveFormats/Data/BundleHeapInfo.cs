@@ -1,4 +1,4 @@
-﻿/* Copyright (c) 2017 Rick (rick 'at' gibbed 'dot' us)
+/* Copyright (c) 2017 Rick (rick 'at' gibbed 'dot' us)
  * 
  * This software is provided 'as-is', without any express or implied
  * warranty. In no event will the authors be held liable for any damages
@@ -30,10 +30,10 @@ namespace Gibbed.MassEffectAndromeda.SaveFormats.Data
     {
         [JsonProperty("unknown1")]
         public string Unknown1 { get; set; }
-        
+
         [JsonProperty("unknown2")]
         public uint Unknown2 { get; set; }
-        
+
         [JsonProperty("unknown3")]
         public uint Unknown3 { get; set; }
 
