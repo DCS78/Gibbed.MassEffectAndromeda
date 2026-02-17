@@ -11,7 +11,7 @@ skip_commits:
 
 max_jobs: 1
 
-image: Visual Studio 2015
+image: Visual Studio 2026
 
 clone_folder: c:\projects\gibbed-masseffectandromeda
 
@@ -28,7 +28,7 @@ configuration:
   - Debug
 
 build:
-  project: Mass Effect Andromeda.sln
+  project: Mass Effect Andromeda.slnx
   parallel: true
   verbosity: minimal
 

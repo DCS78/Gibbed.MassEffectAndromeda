@@ -31,6 +31,7 @@
     <ProjectReference Include="..\Gibbed.MassEffectAndromeda.FileFormats\Gibbed.MassEffectAndromeda.FileFormats.csproj" />
     <ProjectReference Include="..\Gibbed.MassEffectAndromeda.GameInfo\Gibbed.MassEffectAndromeda.GameInfo.csproj" />
     <ProjectReference Include="..\Gibbed.MassEffectAndromeda.SaveFormats\Gibbed.MassEffectAndromeda.SaveFormats.csproj" />
+    <ProjectReference Include="..\Gibbed.IO\Gibbed.IO.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\become_a_patron_button.png" />
