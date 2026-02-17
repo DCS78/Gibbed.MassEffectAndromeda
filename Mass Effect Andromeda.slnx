@@ -156,7 +156,7 @@
       <Build Solution="SaveEdit Packaging|Mixed Platforms" Project="false" />
     </Project>
   </Folder>
-  <Project Path="projects/Gibbed.IO/Gibbed.IO.csproj">
+  <Project Path="projects/Gibbed.IO/Gibbed.IO.csproj" Id="047857ba-daa3-4ca7-afb8-a1b082b28c6a">
     <BuildType Solution="SaveEdit Packaging|Any CPU" Project="Release" />
     <BuildType Solution="SaveEdit Packaging|Mixed Platforms" Project="Debug" />
     <BuildType Solution="SaveEdit Packaging|x86" Project="Release" />
@@ -165,14 +165,14 @@
   <Project Path="projects/Gibbed.MassEffectAndromeda.SaveEdit/Gibbed.MassEffectAndromeda.SaveEdit.csproj">
     <Platform Solution="*|x86" Project="x86" />
   </Project>
-  <Project Path="projects/Gibbed.PortableExecutable/Gibbed.PortableExecutable.csproj">
+  <Project Path="projects/Gibbed.PortableExecutable/Gibbed.PortableExecutable.csproj" Id="2fdf8d04-3f8c-4a62-b13b-348e7a7f61ca">
     <BuildType Solution="SaveEdit Packaging|Any CPU" Project="Release" />
     <BuildType Solution="SaveEdit Packaging|Mixed Platforms" Project="Debug" />
     <BuildType Solution="SaveEdit Packaging|x86" Project="Release" />
     <Build Solution="*|x86" Project="false" />
     <Build Solution="SaveEdit Packaging|Mixed Platforms" Project="false" />
   </Project>
-  <Project Path="projects/NDesk.Options/NDesk.Options.csproj">
+  <Project Path="projects/NDesk.Options/NDesk.Options.csproj" Id="c98a6cd6-9422-4b35-8b7a-f520d75534d1">
     <BuildType Solution="SaveEdit Packaging|Any CPU" Project="Release" />
     <BuildType Solution="SaveEdit Packaging|Mixed Platforms" Project="Debug" />
     <BuildType Solution="SaveEdit Packaging|x86" Project="Release" />

@@ -4,7 +4,7 @@
 
 This document tracks the tier-by-tier upgrade of Gibbed.MassEffectAndromeda from legacy .NET Framework to .NET 10 using a bottom-up dependency-first approach. Five tiers of projects will be upgraded sequentially, starting with leaf libraries and progressing to the WPF application.
 
-**Progress**: 3/10 tasks complete (30%) ![30%](https://progress-bar.xyz/30)
+**Progress**: 3/10 tasks complete (30%) ![0%](https://progress-bar.xyz/30)
 
 ---
 
@@ -38,7 +38,7 @@ This document tracks the tier-by-tier upgrade of Gibbed.MassEffectAndromeda from
 
 ---
 
-### [ ] TASK-003: Upgrade Tier 2 dependent libraries
+### [▶] TASK-003: Upgrade Tier 2 dependent libraries
 **References**: Plan §Tier 2, Plan §4 Per-tier specifications
 
 - [ ] (1) Convert all 4 Tier 2 projects to SDK-style (Gibbed.Frostbite3.Unbundling, Gibbed.Frostbite3.Dynamic, Gibbed.MassEffectAndromeda.SaveFormats, Gibbed.MassEffectAndromeda.Dumping)
@@ -152,6 +152,7 @@ This document tracks the tier-by-tier upgrade of Gibbed.MassEffectAndromeda from
 - [✓] (9) Commit final validation with message: "TASK-010: Complete .NET 10 upgrade validation"
 
 ---
+
 
 
 
